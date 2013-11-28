@@ -28,13 +28,13 @@
 		24DE9E1211C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.m */; };
 		666F64B41847B39A00BA8409 /* ComPolancomediaMapboxView.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F64B21847B39A00BA8409 /* ComPolancomediaMapboxView.h */; };
 		666F64B51847B39A00BA8409 /* ComPolancomediaMapboxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 666F64B31847B39A00BA8409 /* ComPolancomediaMapboxView.m */; };
-		666F64B81847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F64B61847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.h */; };
-		666F64B91847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 666F64B71847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.m */; };
 		666F6DE91847BFD700BA8409 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F6DE81847BFD700BA8409 /* CoreLocation.framework */; };
 		666F6DEB1847BFDF00BA8409 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F6DEA1847BFDF00BA8409 /* QuartzCore.framework */; };
 		666F6DEC1847BFE800BA8409 /* libMapBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F6DE31847BF0D00BA8409 /* libMapBox.a */; };
 		666F6DEE1847BFF900BA8409 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F6DED1847BFF900BA8409 /* libsqlite3.dylib */; };
 		666F6DF01847C00400BA8409 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 666F6DEF1847C00400BA8409 /* libz.dylib */; };
+		666F6DF51847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 666F6DF31847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.h */; };
+		666F6DF61847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 666F6DF41847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.m */; };
 		AA747D9F0F9514B9006C5449 /* ComPolancomediaMapbox_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComPolancomediaMapbox_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -78,13 +78,13 @@
 		24DE9E1011C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPolancomediaMapboxModuleAssets.m; path = Classes/ComPolancomediaMapboxModuleAssets.m; sourceTree = "<group>"; };
 		666F64B21847B39A00BA8409 /* ComPolancomediaMapboxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComPolancomediaMapboxView.h; path = Classes/ComPolancomediaMapboxView.h; sourceTree = "<group>"; };
 		666F64B31847B39A00BA8409 /* ComPolancomediaMapboxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPolancomediaMapboxView.m; path = Classes/ComPolancomediaMapboxView.m; sourceTree = "<group>"; };
-		666F64B61847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComPolancomediaMapboxViewProxy.h; sourceTree = "<group>"; };
-		666F64B71847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComPolancomediaMapboxViewProxy.m; sourceTree = "<group>"; };
 		666F6DDD1847BF0C00BA8409 /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = "mapbox-ios-sdk/MapView/MapView.xcodeproj"; sourceTree = "<group>"; };
 		666F6DE81847BFD700BA8409 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		666F6DEA1847BFDF00BA8409 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		666F6DED1847BFF900BA8409 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		666F6DEF1847C00400BA8409 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		666F6DF31847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComPolancomediaMapboxViewProxy.h; path = Classes/ComPolancomediaMapboxViewProxy.h; sourceTree = "<group>"; };
+		666F6DF41847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComPolancomediaMapboxViewProxy.m; path = Classes/ComPolancomediaMapboxViewProxy.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ComPolancomediaMapbox_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComPolancomediaMapbox_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libComPolancomediaMapbox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComPolancomediaMapbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,14 +142,14 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				666F6DF31847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.h */,
+				666F6DF41847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.m */,
 				24DD6CF71134B3F500162E58 /* ComPolancomediaMapboxModule.h */,
 				24DD6CF81134B3F500162E58 /* ComPolancomediaMapboxModule.m */,
 				24DE9E0F11C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.h */,
 				24DE9E1011C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.m */,
 				666F64B21847B39A00BA8409 /* ComPolancomediaMapboxView.h */,
 				666F64B31847B39A00BA8409 /* ComPolancomediaMapboxView.m */,
-				666F64B61847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.h */,
-				666F64B71847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA747D9F0F9514B9006C5449 /* ComPolancomediaMapbox_Prefix.pch in Headers */,
-				666F64B81847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.h in Headers */,
+				666F6DF51847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.h in Headers */,
 				24DD6CF91134B3F500162E58 /* ComPolancomediaMapboxModule.h in Headers */,
 				666F64B41847B39A00BA8409 /* ComPolancomediaMapboxView.h in Headers */,
 				24DE9E1111C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.h in Headers */,
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666F64B91847BDC100BA8409 /* ComPolancomediaMapboxViewProxy.m in Sources */,
+				666F6DF61847EFF400BA8409 /* ComPolancomediaMapboxViewProxy.m in Sources */,
 				24DD6CFA1134B3F500162E58 /* ComPolancomediaMapboxModule.m in Sources */,
 				24DE9E1211C5FE74003F90F6 /* ComPolancomediaMapboxModuleAssets.m in Sources */,
 				666F64B51847B39A00BA8409 /* ComPolancomediaMapboxView.m in Sources */,
