@@ -1,0 +1,5 @@
+{
+    "fileName": "GRMustacheTemplateRenderMethodsTest.json",
+    "stringProperty":"{{stringProperty}}",
+    "BOOLProperty":{{#BOOLProperty}}true{{/BOOLProperty}}{{^BOOLProperty}}false{{/BOOLProperty}}
+}

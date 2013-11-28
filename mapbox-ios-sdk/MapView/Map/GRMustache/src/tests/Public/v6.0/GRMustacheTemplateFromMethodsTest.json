@@ -1,0 +1,4 @@
+{
+    "fileName": "GRMustacheTemplateFromMethodsTest.json",
+    "stringProperty":"{{stringProperty}}"
+}

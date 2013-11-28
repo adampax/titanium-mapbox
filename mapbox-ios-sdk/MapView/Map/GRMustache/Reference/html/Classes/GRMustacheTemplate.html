@@ -1,0 +1,1422 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>GRMustacheTemplate Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 858)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">GRMustache 6.8 </a></h1>
+				<a id="developerHome" href="../index.html">Gwendal Roué</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">GRMustacheTemplate Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/baseContext">&nbsp;&nbsp;&nbsp;&nbsp;baseContext</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/renderObject:fromResource:bundle:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderObject:fromResource:bundle:error:</option>
+	
+	<option value="//api/name/renderObject:fromString:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderObject:fromString:error:</option>
+	
+	<option value="//api/name/templateFromContentsOfFile:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ templateFromContentsOfFile:error:</option>
+	
+	<option value="//api/name/templateFromContentsOfURL:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ templateFromContentsOfURL:error:</option>
+	
+	<option value="//api/name/templateFromResource:bundle:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ templateFromResource:bundle:error:</option>
+	
+	<option value="//api/name/templateFromString:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ templateFromString:error:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/extendBaseContextWithObject:">&nbsp;&nbsp;&nbsp;&nbsp;- extendBaseContextWithObject:</option>
+	
+	<option value="//api/name/extendBaseContextWithProtectedObject:">&nbsp;&nbsp;&nbsp;&nbsp;- extendBaseContextWithProtectedObject:</option>
+	
+	<option value="//api/name/extendBaseContextWithTagDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- extendBaseContextWithTagDelegate:</option>
+	
+	<option value="//api/name/renderContentWithContext:HTMLSafe:error:">&nbsp;&nbsp;&nbsp;&nbsp;- renderContentWithContext:HTMLSafe:error:</option>
+	
+	<option value="//api/name/renderObject:error:">&nbsp;&nbsp;&nbsp;&nbsp;- renderObject:error:</option>
+	
+	<option value="//api/name/renderObjectsFromArray:error:">&nbsp;&nbsp;&nbsp;&nbsp;- renderObjectsFromArray:error:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Creating Templates">Creating Templates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Configuring Templates">Configuring Templates</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Rendering Templates">Rendering Templates</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/baseContext">baseContext</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderObject:fromResource:bundle:error:">renderObject:fromResource:bundle:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderObject:fromString:error:">renderObject:fromString:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/templateFromContentsOfFile:error:">templateFromContentsOfFile:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/templateFromContentsOfURL:error:">templateFromContentsOfURL:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/templateFromResource:bundle:error:">templateFromResource:bundle:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/templateFromString:error:">templateFromString:error:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/extendBaseContextWithObject:">extendBaseContextWithObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/extendBaseContextWithProtectedObject:">extendBaseContextWithProtectedObject:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/extendBaseContextWithTagDelegate:">extendBaseContextWithTagDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderContentWithContext:HTMLSafe:error:">renderContentWithContext:HTMLSafe:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderObject:error:">renderObject:error:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderObjectsFromArray:error:">renderObjectsFromArray:error:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="GRMustacheTemplate Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">GRMustacheTemplate Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">GRMustacheTemplate.h</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The GRMustacheTemplate class provides with Mustache template rendering
+services.</p>
+
+<p><strong>Companion guide:</strong> <a href="https://github.com/groue/GRMustache/blob/master/Guides/templates.md">https://github.com/groue/GRMustache/blob/master/Guides/templates.md</a></p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Creating Templates" name="task_Creating Templates"></a>
+						<h3 class="subsubtitle task-title">Creating Templates</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/templateFromString:error:">+&nbsp;templateFromString:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/templateFromContentsOfFile:error:">+&nbsp;templateFromContentsOfFile:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/templateFromContentsOfURL:error:">+&nbsp;templateFromContentsOfURL:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/templateFromResource:bundle:error:">+&nbsp;templateFromResource:bundle:error:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Configuring Templates" name="task_Configuring Templates"></a>
+						<h3 class="subsubtitle task-title">Configuring Templates</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/baseContext">&nbsp;&nbsp;baseContext</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/extendBaseContextWithObject:">&ndash;&nbsp;extendBaseContextWithObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/extendBaseContextWithProtectedObject:">&ndash;&nbsp;extendBaseContextWithProtectedObject:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/extendBaseContextWithTagDelegate:">&ndash;&nbsp;extendBaseContextWithTagDelegate:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Rendering Templates" name="task_Rendering Templates"></a>
+						<h3 class="subsubtitle task-title">Rendering Templates</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderObject:fromString:error:">+&nbsp;renderObject:fromString:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderObject:fromResource:bundle:error:">+&nbsp;renderObject:fromResource:bundle:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderObject:error:">&ndash;&nbsp;renderObject:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderObjectsFromArray:error:">&ndash;&nbsp;renderObjectsFromArray:error:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderContentWithContext:HTMLSafe:error:">&ndash;&nbsp;renderContentWithContext:HTMLSafe:error:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/baseContext" title="baseContext"></a>
+	<h3 class="subsubtitle method-title">baseContext</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The template&rsquo;s base context: all rendering start from this context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) GRMustacheContext *baseContext</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Its default value comes from the configuration of the source template
+repository. Unless specified, it contains the <a href="../Classes/GRMustache.html">GRMustache</a> standard library.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/GRMustacheContext.html">GRMustacheContext</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/GRMustacheConfiguration.html">GRMustacheConfiguration</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/GRMustache.html#//api/name/standardLibrary">[GRMustache standardLibrary]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/renderObject:fromResource:bundle:error:" title="renderObject:fromResource:bundle:error:"></a>
+	<h3 class="subsubtitle method-title">renderObject:fromResource:bundle:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Renders an object from a bundle resource template.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderObject:(id)<em>object</em> fromResource:(NSString *)<em>name</em> bundle:(NSBundle *)<em>bundle</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>An object used for interpreting Mustache tags.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>The name of a bundle resource of extension &ldquo;mustache&rdquo;.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bundle</em></dt>
+			<dd><p>The bundle where to look for the template resource. If nil,
+the main bundle is used.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error during rendering, upon return contains an
+NSError object that describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A string containing the rendered template.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If you provide nil as a bundle, the resource will be looked in the main
+bundle, with a &ldquo;mustache&rdquo; extension.</p>
+
+<p>The template resource must be encoded in UTF8. See the
+<a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a> class for more encoding options.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderObject:fromString:error:" title="renderObject:fromString:error:"></a>
+	<h3 class="subsubtitle method-title">renderObject:fromString:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Renders an object from a template string.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderObject:(id)<em>object</em> fromString:(NSString *)<em>templateString</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>An object used for interpreting Mustache tags.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>templateString</em></dt>
+			<dd><p>The template string.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error during rendering, upon return
+contains an NSError object that describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A string containing the rendered template.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/templateFromContentsOfFile:error:" title="templateFromContentsOfFile:error:"></a>
+	<h3 class="subsubtitle method-title">templateFromContentsOfFile:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a template file, and returns a compiled template.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)templateFromContentsOfFile:(NSString *)<em>path</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>path</em></dt>
+			<dd><p>The path of the template.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error loading or parsing template and
+partials, upon return contains an NSError object that
+describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A GRMustacheTemplate instance.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.11</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The template at path must be encoded in UTF8. See the
+<a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a> class for more encoding options.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/templateFromContentsOfURL:error:" title="templateFromContentsOfURL:error:"></a>
+	<h3 class="subsubtitle method-title">templateFromContentsOfURL:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a template file, and returns a compiled template.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)templateFromContentsOfURL:(NSURL *)<em>url</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The URL of the template.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error loading or parsing template and
+partials, upon return contains an NSError object that
+describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A GRMustacheTemplate instance.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.11</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The template at url must be encoded in UTF8. See the
+<a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a> class for more encoding options.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/templateFromResource:bundle:error:" title="templateFromResource:bundle:error:"></a>
+	<h3 class="subsubtitle method-title">templateFromResource:bundle:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a bundle resource template, and returns a compiled template.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)templateFromResource:(NSString *)<em>name</em> bundle:(NSBundle *)<em>bundle</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>The name of a bundle resource of extension &ldquo;mustache&rdquo;.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bundle</em></dt>
+			<dd><p>The bundle where to look for the template resource. If nil,
+the main bundle is used.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error loading or parsing template and
+partials, upon return contains an NSError object that
+describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A GRMustacheTemplate instance.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.11</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If you provide nil as a bundle, the resource will be looked in the main
+bundle.</p>
+
+<p>The template resource must be encoded in UTF8. See the
+<a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a> class for more encoding options.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/GRMustacheTemplateRepository.html">GRMustacheTemplateRepository</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/templateFromString:error:" title="templateFromString:error:"></a>
+	<h3 class="subsubtitle method-title">templateFromString:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parses a template string, and returns a compiled template.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)templateFromString:(NSString *)<em>templateString</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>templateString</em></dt>
+			<dd><p>The template string.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error loading or parsing template and
+partials, upon return contains an NSError object that
+describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A GRMustacheTemplate instance.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.11</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/extendBaseContextWithObject:" title="extendBaseContextWithObject:"></a>
+	<h3 class="subsubtitle method-title">extendBaseContextWithObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Extends the base context of the receiver with the provided object, making its
+keys available for all renderings.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)extendBaseContextWithObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>An object</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.8</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>For example:</p>
+
+<p>GRMustacheTemplate *template = [GRMustacheTemplate templateFromString:@&ldquo;{{name}}&rdquo; error:NULL];</p>
+
+<p>// Have the <code>name</code> key defined for all renderings of the template:
+id object = @{ @&ldquo;name&rdquo;: @&ldquo;Arthur&rdquo; };
+[template importObject:object];</p>
+
+<p>// Renders &ldquo;Arthur&rdquo;
+[template renderObject:nil error:NULL];</p>
+
+<p>Keys defined by <em>object</em> can be overriden by other objects that will
+eventually enter the context stack:</p>
+
+<p>// Renders &ldquo;Billy&rdquo;, not &ldquo;Arthur&rdquo;
+[template renderObject:@{ @&ldquo;name&rdquo;: @&ldquo;Billy&rdquo; } error:NULL];</p>
+
+<p>This method is a shortcut. It is equivalent to the following line of code:</p>
+
+<p>template.baseContext = [template.baseContext contextByAddingObject:object];</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/baseContext">@property baseContext</a></p></code></li>
+			
+			<li><code><p><a href="#//api/name/extendBaseContextWithProtectedObject:">- extendBaseContextWithProtectedObject:</a></p></code></li>
+			
+			<li><code><p><a href="#//api/name/extendBaseContextWithTagDelegate:">- extendBaseContextWithTagDelegate:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/extendBaseContextWithProtectedObject:" title="extendBaseContextWithProtectedObject:"></a>
+	<h3 class="subsubtitle method-title">extendBaseContextWithProtectedObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Extends the base context of the receiver with the provided object, making its
+keys available for all renderings.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)extendBaseContextWithProtectedObject:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>An object</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.8</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Keys defined by <em>object</em> gets &ldquo;protected&rdquo;, which means that they can not be
+overriden by other objects that will eventually enter the context stack.</p>
+
+<p>For example:</p>
+
+<p>GRMustacheTemplate *template = [GRMustacheTemplate templateFromString:@&ldquo;{{precious}}&rdquo; error:NULL];</p>
+
+<p>// Have the <code>precious</code> key defined, and protected, for all renderings of the template:
+id object = @{ @&ldquo;precious&rdquo;: @&ldquo;gold&rdquo; };
+[template importProtectedObject:object];</p>
+
+<p>// Renders &ldquo;gold&rdquo;
+[template renderObject:@{ @&ldquo;precious&rdquo;: @&ldquo;lead&rdquo; } error:NULL];</p>
+
+<p>This method is a shortcut. It is equivalent to the following line of code:</p>
+
+<p>template.baseContext = [template.baseContext contextByAddingProtectedObject:object];</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/baseContext">@property baseContext</a></p></code></li>
+			
+			<li><code><p><a href="#//api/name/extendBaseContextWithObject:">- extendBaseContextWithObject:</a></p></code></li>
+			
+			<li><code><p><a href="#//api/name/extendBaseContextWithTagDelegate:">- extendBaseContextWithTagDelegate:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/extendBaseContextWithTagDelegate:" title="extendBaseContextWithTagDelegate:"></a>
+	<h3 class="subsubtitle method-title">extendBaseContextWithTagDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Extends the base context of the receiver with a tag delegate, making it aware
+of the rendering of all tags in the template.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)extendBaseContextWithTagDelegate:(id&lt;GRMustacheTagDelegate&gt;)<em>tagDelegate</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tagDelegate</em></dt>
+			<dd><p>A tag delegate</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.8</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is a shortcut. It is equivalent to the following line of code:</p>
+
+<p>template.baseContext = [template.baseContext contextByAddingTagDelegate:tagDelegate];</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/baseContext">@property baseContext</a></p></code></li>
+			
+			<li><code><p><a href="#//api/name/extendBaseContextWithObject:">- extendBaseContextWithObject:</a></p></code></li>
+			
+			<li><code><p><a href="#//api/name/extendBaseContextWithProtectedObject:">- extendBaseContextWithProtectedObject:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderContentWithContext:HTMLSafe:error:" title="renderContentWithContext:HTMLSafe:error:"></a>
+	<h3 class="subsubtitle method-title">renderContentWithContext:HTMLSafe:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the rendering of the receiver, given a rendering context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)renderContentWithContext:(GRMustacheContext *)<em>context</em> HTMLSafe:(BOOL *)<em>HTMLSafe</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>A rendering context.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>HTMLSafe</em></dt>
+			<dd><p>Upon return contains YES or NO, depending on the content
+type of the template, as set by the configuration of the
+source template repository. HTML templates yield YES, text
+templates yield NO.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error rendering the tag, upon return contains
+an NSError object that describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The rendering of the template.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/GRMustacheConfiguration.html">GRMustacheConfiguration</a></p></code></li>
+			
+			<li><code><p><a href="../Constants/GRMustacheContentType.html">GRMustacheContentType</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderObject:error:" title="renderObject:error:"></a>
+	<h3 class="subsubtitle method-title">renderObject:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Renders a template with a context stack initialized with the provided object
+on top of the base context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)renderObject:(id)<em>object</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>An object used for interpreting Mustache tags.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error rendering the template and its
+partials, upon return contains an NSError object that
+describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A string containing the rendered template.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderObjectsFromArray:error:" title="renderObjectsFromArray:error:"></a>
+	<h3 class="subsubtitle method-title">renderObjectsFromArray:error:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Renders a template with a context stack initialized with the provided objects
+on top of the base context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)renderObjectsFromArray:(NSArray *)<em>objects</em> error:(NSError **)<em>error</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>objects</em></dt>
+			<dd><p>An array of context objects for interpreting Mustache tags.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>If there is an error rendering the template and its
+partials, upon return contains an NSError object that
+describes the problem.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A string containing the rendered template.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v6.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">GRMustacheTemplate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Gwendal Roué. All rights reserved. (Last updated: 2013-08-10)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 858)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
