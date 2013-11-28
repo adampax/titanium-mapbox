@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1
+apiversion: 2
+description: Wrapper for Mapbox iOS SDK
+author: Adam Paxton
+license: MIT License
+copyright: Copyright (c) 2013 by Polanco Media, LLC
+
+
+# these should not be edited
+name: Mapbox
+moduleid: com.polancomedia.mapbox
+guid: 5c0a22af-9c57-4fa2-a655-689f413c7541
+platform: iphone
+minsdk: 3.1.3.GA
