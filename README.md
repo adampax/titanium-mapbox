@@ -1,4 +1,4 @@
-#Mapbox IOS SDK Wrapper for Titanium
+# Mapbox IOS SDK Wrapper for Titanium
 
 Uses the [Mapbox iOS SDK](https://github.com/mapbox/mapbox-ios-sdk) `develop` branch.
 
