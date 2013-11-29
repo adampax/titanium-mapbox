@@ -42,8 +42,6 @@
 -(void)willMoveToSuperview:(UIView *)newSuperview
 {
 	NSLog(@"[VIEW LIFECYCLE EVENT] willMoveToSuperview");
-    
-    mapView.minZoom = [TiUtils floatValue:[self.proxy valueForKey:@"minZoom"]];
 }
 
 -(void)addMap:(CGRect)bounds
@@ -70,7 +68,9 @@
                    backgroundImage:Nil
                    ];
           */
+        
         mapView.debugTiles = [self.proxy valueForKey:@"debugTiles"];
+        mapView.hideAttribution = [self.proxy valueForKey:@"hideAttribution"];
         
         mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
