@@ -1,26 +1,29 @@
-// This is a test harness for your module
-// You should do something interesting in this harness 
-// to test out the module and to provide instructions 
-// to users on how to use it by example.
+//each entry in tableData contains an 'id' corresponding with a file name of a map test.
+//
 
-
-// open a single window
 var win = Ti.UI.createWindow({
-	backgroundColor:'white'
+	title : 'Tests',
+	backgroundColor : 'white'
 });
 
-var mapbox = require('com.polancomedia.mapbox');
-
-var mapView = mapbox.createView({
-	map: 'control-room',
-	//map: 'road-trip',
-	minZoom: 0, //8,
-	maxZoom: 6, //10,
-	zoom: 4,
-	centerLatLng: [18.467354,-91.903534],
-	width: Ti.UI.FILL,
-	height: Ti.UI.FILL
+var navWin = Titanium.UI.iOS.createNavigationWindow({
+	window : win
 });
 
-win.add(mapView);
-win.open();
+var tableData = [{
+	title : 'Offline Map',
+	id : 'offlineMap'
+}, {
+	title : 'Offline Partial Map',
+	id : 'offlinePartialMap'
+}];
+
+var table = Ti.UI.createTableView({
+	data : tableData
+})
+win.add(table);
+navWin.open();
+
+table.addEventListener('click', function(e) {
+	navWin.openWindow(require(e.rowData.id).win());
+});
