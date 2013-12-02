@@ -1,14 +1,14 @@
 exports.win = function(args){
-	//create a map with local mbtiles file that contains coverage of entire globe
+	//create a map with online map source
 	var win = Ti.UI.createWindow({
-		title: 'Offline Map',
+		title: 'Online Map',
 		backgroundColor:'white'
 	});
 	
 	var mapbox = require('com.polancomedia.mapbox');
 	
 	var mapView = mapbox.createView({
-		map: '/maps/control-room',
+		map: 'examples.map-zswgei2n',
 		minZoom: 0, //8,
 		maxZoom: 6, //10,
 		zoom: 4,

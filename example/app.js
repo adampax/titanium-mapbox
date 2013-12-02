@@ -16,6 +16,9 @@ var tableData = [{
 }, {
 	title : 'Offline Partial Map',
 	id : 'offlinePartialMap'
+}, {
+	title : 'Online Map',
+	id : 'onlineMap'
 }];
 
 var table = Ti.UI.createTableView({
