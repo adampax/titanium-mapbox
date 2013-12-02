@@ -4,7 +4,7 @@ Uses the [Mapbox iOS SDK](https://github.com/mapbox/mapbox-ios-sdk) `develop` br
 
 ## Use
 
-Put the zip in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.1.3GA, tested on iOS 7.
+Put the [compiled zip](https://github.com/adampax/titanium-mapbox/tree/master/dist) in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.1.3GA, tested on iOS 7.
 
 ### example/app.js
 
@@ -40,7 +40,7 @@ The `example` folder contains two sample mbtiles maps:
 ## Properties
 
 `map`
-* Required, path to local mbtiles file or an online MapBox or TileStream id that looks like: <username>.map-<random characters>.
+* Required, path to local mbtiles file or an online MapBox or TileStream id that looks something like: _userName.map-szwegi5m_`.
 
 `debugTiles`
 * Optional, defaults to false.
