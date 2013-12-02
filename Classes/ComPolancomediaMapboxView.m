@@ -49,8 +49,25 @@
     if(mapView==nil)
     {
         NSLog(@"[VIEW LIFECYCLE EVENT] addMap");
-        RMMBTilesSource *mapSource = [[RMMBTilesSource alloc] initWithTileSetResource:[self.proxy valueForKey:@"map"] ofType:@"mbtiles"];
-       
+        
+        NSString *mapPath = [TiUtils stringValue:[self.proxy valueForKey:@"map"]];
+        id mapSource;
+        
+        //check if file exists, otherwise try to add remote map
+        NSString *mapInResourcesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[mapPath stringByAppendingString:@".mbtiles"]];
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:mapInResourcesFolder];
+        NSLog(@"mapFile exists: %i", fileExists);
+        
+        if(fileExists)
+        {
+            mapSource = [[RMMBTilesSource alloc] initWithTileSetResource:mapPath ofType:@"mbtiles"];
+            
+        } else
+        {
+            mapSource = [[RMMapBoxSource alloc] initWithMapID:mapPath];
+
+        }
+        
         mapView = [[RMMapView alloc] initWithFrame:bounds andTilesource:mapSource];
         mapView.zoom = [TiUtils floatValue:[self.proxy valueForKey:@"zoom"]];
         mapView.minZoom = [TiUtils floatValue:[self.proxy valueForKey:@"minZoom"]];
