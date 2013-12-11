@@ -99,6 +99,7 @@
 
 -(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
+    NSLog(@"[VIEW LIFECYCLE EVENT] frameSizeChanged");
     if (mapView!=nil)
     {
         [TiUtils setView:mapView positionRect:bounds];
@@ -108,5 +109,16 @@
         //create the mapView after frameSizeChanged so that zoom will work correctly for maps smaller than the view
         [self addMap:bounds];
     }
+}
+
+-(void)setCenterLatLng_:(id)center
+{
+    mapView.centerCoordinate = CLLocationCoordinate2DMake([TiUtils floatValue:[center objectAtIndex:0]],[TiUtils floatValue:[center objectAtIndex:1]]);
+
+}
+
+-(void)setDebugTiles_:(id)debug
+{
+	mapView.debugTiles = [TiUtils boolValue:debug];
 }
 @end
