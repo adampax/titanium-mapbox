@@ -6,7 +6,7 @@ Uses the [Mapbox iOS SDK](https://github.com/mapbox/mapbox-ios-sdk) `develop` br
 
 Put the [compiled zip](https://github.com/adampax/titanium-mapbox/tree/master/dist) in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.1.3GA, tested on iOS 7.
 
-### example/app.js
+### Example
 
 ```javascript
 var mapbox = require('com.polancomedia.mapbox');
@@ -26,6 +26,8 @@ win.add(mapView);
 win.open();
 ```
 
+See more examples in the `example` folder.
+
 ### Sample Maps
 The `example` folder contains two sample mbtiles maps:
 
@@ -39,15 +41,26 @@ The `example` folder contains two sample mbtiles maps:
 
 ## Properties
 
-`map`
-* Required, path to local mbtiles file or an online MapBox or TileStream id that looks something like: _userName.map-szwegi5m_`.
+#### map
+* Required, path to local mbtiles file or an online MapBox or TileStream id that looks something like: _userName.map-szwegi5m_.
 
-`debugTiles`
+#### debugTiles
 * Optional, defaults to false.
 
-`hideAttribution`
+#### hideAttribution
 * Optional, defaults to false.
 * See Mapbox [Terms and Conditions](https://www.mapbox.com/mapbox-ios-sdk/#attribution) for attribution info.
+
+## Methods
+
+#### setDebugTiles(true)
+* Boolean, toggles the debug grid on the map
+
+#### setZoom(4)
+* Zoom the map. Accepts a float to set the zoom level
+
+#### setCenterLatLng([18.467354,-91.903534])
+* Centers the map on a latitude and longitude.
 
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
