@@ -37,6 +37,8 @@
 {
     RELEASE_TO_NIL(mapView);
     [super dealloc];
+    
+    NSLog(@"[VIEW LIFECYCLE EVENT] dealloc");
 }
 
 -(void)willMoveToSuperview:(UIView *)newSuperview
@@ -120,5 +122,10 @@
 -(void)setDebugTiles_:(id)debug
 {
 	mapView.debugTiles = [TiUtils boolValue:debug];
+}
+
+-(void)setZoom_:(id)zoom
+{
+    [mapView setZoom:[TiUtils floatValue:zoom] animated:true];
 }
 @end

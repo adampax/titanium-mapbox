@@ -20,6 +20,8 @@ exports.win = function(args){
 	});
 	
 	win.add(mapView);
+	
+	win.add(require('toolbar').init(mapView));
 	return win;
 }
 

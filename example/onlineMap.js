@@ -9,8 +9,8 @@ exports.win = function(args){
 	
 	var mapView = mapbox.createView({
 		map: 'examples.map-zswgei2n',
-		minZoom: 0, //8,
-		maxZoom: 6, //10,
+		minZoom: 1, //8,
+		maxZoom: 18, //10,
 		zoom: 4,
 		centerLatLng: [18.467354,-91.903534],
 		width: Ti.UI.FILL,
@@ -20,6 +20,8 @@ exports.win = function(args){
 	});
 	
 	win.add(mapView);
+	
+	win.add(require('toolbar').init(mapView));
 	return win;
 }
 
