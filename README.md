@@ -4,7 +4,7 @@ Uses the [Mapbox iOS SDK](https://github.com/mapbox/mapbox-ios-sdk) `develop` br
 
 ## Use
 
-Put the zip in your project, and add a reference in tiapp.xml.
+Put the [compiled zip](https://github.com/adampax/titanium-mapbox/tree/master/dist) in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.1.3GA, tested on iOS 7.
 
 ### example/app.js
 
@@ -40,7 +40,7 @@ The `example` folder contains two sample mbtiles maps:
 ## Properties
 
 `map`
-* Required, path to local mbtiles file.
+* Required, path to local mbtiles file or an online MapBox or TileStream id that looks something like: _userName.map-szwegi5m_`.
 
 `debugTiles`
 * Optional, defaults to false.
@@ -51,14 +51,14 @@ The `example` folder contains two sample mbtiles maps:
 
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
-* Add support for remote maps
+* ~~Add support for remote maps~~
 * Add support for markers and other SDK items
 * Contributions welcome
 
 ## About
-Me: [Adam Paxton](http://adampaxton.com) 
-Twitter: [@adampax](http://twitter.com/adampax)
-Company: [Polanco Media, LLC](http://polancomedia.com)
+* Me: [Adam Paxton](http://adampaxton.com) 
+* Twitter: [@adampax](http://twitter.com/adampax)
+* Work: [Polanco Media, LLC](http://polancomedia.com)
 
 ## License
 MIT License

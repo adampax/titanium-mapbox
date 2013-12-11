@@ -1,0 +1,3 @@
+In order for the example app to work properly, copy the mbtiles files from example-maps folder to the example/maps folder.  
+
+These files are fairly large, and were left out of the compiled zip in order to keep from being added to your app.
