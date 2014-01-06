@@ -46,14 +46,17 @@ The `example` folder contains two sample mbtiles maps:
 
 #### debugTiles
 * Optional, defaults to false.
+* Show grid with tile info to help with debugging.
 
 #### hideAttribution
 * Optional, defaults to false.
+* Displays info button in corner of map.
 * See Mapbox [Terms and Conditions](https://www.mapbox.com/mapbox-ios-sdk/#attribution) for attribution info.
 
 #### userLocation
 * Optional, defaults to false.
 * Displays the user's location on map.
+
 ## Methods
 
 #### setDebugTiles(true)
