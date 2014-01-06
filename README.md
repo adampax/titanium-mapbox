@@ -51,6 +51,9 @@ The `example` folder contains two sample mbtiles maps:
 * Optional, defaults to false.
 * See Mapbox [Terms and Conditions](https://www.mapbox.com/mapbox-ios-sdk/#attribution) for attribution info.
 
+#### userLocation
+* Optional, defaults to false.
+* Displays the user's location on map.
 ## Methods
 
 #### setDebugTiles(true)

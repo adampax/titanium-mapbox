@@ -95,6 +95,7 @@
         
         mapView.adjustTilesForRetinaDisplay = YES; // these tiles aren't designed specifically for retina, so make them legible
         
+        mapView.showsUserLocation = [self.proxy valueForKey:@"userLocation"];
         [self addSubview:mapView];
     }
 }

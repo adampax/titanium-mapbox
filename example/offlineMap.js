@@ -16,7 +16,7 @@ exports.win = function(args){
 		width: Ti.UI.FILL,
 		height: Ti.UI.FILL,
 		hideAttribution: true,  //defaults to: false. See Mapbox terms and conditions before removing
-		debugTiles:true
+		userLocation: true
 	});
 	
 	win.add(mapView);
