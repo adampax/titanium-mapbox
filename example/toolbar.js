@@ -13,7 +13,6 @@ exports.init = function(mapView) {
 	    labels:['Zoom +', 'Zoom -'],
 	    style:Titanium.UI.iPhone.SystemButtonStyle.BAR
 	});
-	win.add(zoom);
 	
 	zoom.addEventListener('click', function(e){
 		mapView.setZoom(mapView.zoom + (e.index === 0 ? 1 : -1));
