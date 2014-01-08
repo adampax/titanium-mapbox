@@ -7,7 +7,7 @@
 #import "TiUIView.h"
 #import "Mapbox.h"
 
-@interface ComPolancomediaMapboxView : TiUIView {
+@interface ComPolancomediaMapboxView : TiUIView<RMMapViewDelegate> {
     
     RMMapView *mapView;
     
