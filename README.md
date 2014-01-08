@@ -68,6 +68,11 @@ The `example` folder contains two sample mbtiles maps:
 #### setCenterLatLng([18.467354,-91.903534])
 * Centers the map on a latitude and longitude.
 
+## Events
+
+#### 'singleTapOnMap'
+* Returns coordinates of where the map was single tapped as `latitude` and `longitude`.
+
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
 * ~~Add support for remote maps~~

@@ -22,6 +22,12 @@ exports.win = function(args){
 	win.add(mapView);
 	
 	win.add(require('toolbar').init(mapView));
+
+	//events
+	mapView.addEventListener('singleTapOnMap', function(e){
+		Ti.API.info('singleTapOnMap ' + JSON.stringify(e));
+	});
+
 	return win;
 }
 

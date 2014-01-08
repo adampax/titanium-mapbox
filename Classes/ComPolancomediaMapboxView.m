@@ -131,4 +131,25 @@
 {
     [mapView setZoom:[TiUtils floatValue:zoom] animated:true];
 }
+
+- (void)singleTapOnMap:(RMMapView *)mapView at:(CGPoint)point
+{
+	// The event listeners for a view are actually attached to the view proxy.
+	// You must reference 'self.proxy' to get the proxy for this view
+	
+	// It is a good idea to check if there are listeners for the event that
+	// is about to fired. There could be zero or multiple listeners for the
+	// specified event.
+	if ([self.proxy _hasListeners:@"singleTapOnMap"]) {
+        
+		NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSString stringWithFormat:@"%f",[mapView pixelToCoordinate:point].longitude],@"longitude",
+                               [NSString stringWithFormat:@"%f",[mapView pixelToCoordinate:point].latitude],@"latitude",
+                               nil
+                               ];
+        
+		[self.proxy fireEvent:@"singleTapOnMap" withObject:event];
+	}
+}
+
 @end
