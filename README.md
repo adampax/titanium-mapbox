@@ -70,6 +70,9 @@ The `example` folder contains two sample mbtiles maps:
 
 ## Events
 
+#### 'mapViewRegionDidChange'
+* Fires any time the map moves
+
 #### 'singleTapOnMap'
 * Returns coordinates of where the map was single tapped as `latitude` and `longitude`.
 

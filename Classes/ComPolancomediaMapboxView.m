@@ -132,6 +132,15 @@
     [mapView setZoom:[TiUtils floatValue:zoom] animated:true];
 }
 
+#pragma mark Events
+
+- (void)mapViewRegionDidChange:(RMMapView *)map
+{
+	if ([self.proxy _hasListeners:@"mapViewRegionDidChange"]) {
+		[self.proxy fireEvent:@"mapViewRegionDidChange"];
+	}
+}
+
 - (void)singleTapOnMap:(RMMapView *)mapView at:(CGPoint)point
 {
 	// The event listeners for a view are actually attached to the view proxy.
