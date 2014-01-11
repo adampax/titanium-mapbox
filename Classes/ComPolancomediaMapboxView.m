@@ -11,6 +11,8 @@
 
 @implementation ComPolancomediaMapboxView
 
+#pragma mark Lifecycle
+
 -(void)initializeState
 {
 	// This method is called right after allocating the view and
@@ -115,6 +117,8 @@
         [self addMap:bounds];
     }
 }
+
+#pragma mark Property Setters
 
 -(void)setCenterLatLng_:(id)center
 {
