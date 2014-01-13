@@ -17,7 +17,9 @@
 {
 	// This method is called right after allocating the view and
 	// is useful for initializing anything specific to the view
-	
+    
+    [self addMap];
+    
 	[super initializeState];
 	
 	NSLog(@"[VIEW LIFECYCLE EVENT] initializeState");
@@ -48,7 +50,7 @@
 	NSLog(@"[VIEW LIFECYCLE EVENT] willMoveToSuperview");
 }
 
--(void)addMap:(CGRect)bounds
+-(void)addMap
 {
     if(mapView==nil)
     {
@@ -72,7 +74,9 @@
 
         }
         
-        mapView = [[RMMapView alloc] initWithFrame:bounds andTilesource:mapSource];
+        //create the mapView with CGRectMake upon initialization because we won't know frame size until frameSizeChanged is fired after loading view
+        //if we wait until then, we can't add annotations.
+        mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 1) andTilesource:mapSource];
         mapView.zoom = [TiUtils floatValue:[self.proxy valueForKey:@"zoom"]];
         mapView.minZoom = [TiUtils floatValue:[self.proxy valueForKey:@"minZoom"]];
         mapView.maxZoom = [TiUtils floatValue:[self.proxy valueForKey:@"maxZoom"]];
@@ -113,8 +117,7 @@
     }
     else
     {
-        //create the mapView after frameSizeChanged so that zoom will work correctly for maps smaller than the view
-        [self addMap:bounds];
+        [self addMap];
     }
 }
 
