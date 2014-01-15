@@ -140,17 +140,19 @@
 }
 
 #pragma mark Annotations
--(void)setAnnotation_:(id)center
+-(void)setAnnotation_:(id)args
 {
-    if(mapView != nil)
+    if([args isKindOfClass:[NSDictionary class]] && mapView != nil)
     {
         RMPointAnnotation *annotation = [[RMPointAnnotation alloc]
                                          initWithMapView:mapView
-                                         coordinate:CLLocationCoordinate2DMake([TiUtils floatValue:[center objectAtIndex:0]],[TiUtils floatValue:[center objectAtIndex:1]])
-                                         andTitle:@"Hello, world!"];
+                                         coordinate:CLLocationCoordinate2DMake([TiUtils floatValue:[args objectForKey:@"latitude"]],[TiUtils floatValue:[args objectForKey:@"longitude"]])
+                                         andTitle:[TiUtils stringValue:[args objectForKey:@"title"]]
+                                         ];
+        
+        annotation.subtitle = [TiUtils stringValue:[args objectForKey:@"subtitle"]];
     
         [mapView addAnnotation:annotation];
-        NSLog(@"[VIEW ANNOTATIN EVENT] added");
     } else
     {
         NSLog(@"[VIEW ANNOTATIN EVENT] NOT added");

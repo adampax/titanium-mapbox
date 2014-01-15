@@ -21,7 +21,13 @@ exports.win = function(args){
 	
 	win.add(mapView);
 
-	mapView.setAnnotation([18.467354,-91.903534]);
+	//mapView.setAnnotation([18.467354,-91.903534]);
+	mapView.setAnnotation({
+		latitude: 18.467354,
+		longitude: -91.903534,
+		title: 'Test Title',
+		subtitle: 'Subtitle'
+	});
 	
 	win.add(require('toolbar').init(mapView));
 
