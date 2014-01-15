@@ -20,6 +20,8 @@ exports.win = function(args){
 	});
 	
 	win.add(mapView);
+
+	mapView.setAnnotation([18.467354,-91.903534]);
 	
 	win.add(require('toolbar').init(mapView));
 

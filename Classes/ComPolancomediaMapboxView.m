@@ -139,6 +139,25 @@
     [mapView setZoom:[TiUtils floatValue:zoom] animated:true];
 }
 
+#pragma mark Annotations
+-(void)setAnnotation_:(id)center
+{
+    if(mapView != nil)
+    {
+        RMPointAnnotation *annotation = [[RMPointAnnotation alloc]
+                                         initWithMapView:mapView
+                                         coordinate:CLLocationCoordinate2DMake([TiUtils floatValue:[center objectAtIndex:0]],[TiUtils floatValue:[center objectAtIndex:1]])
+                                         andTitle:@"Hello, world!"];
+    
+        [mapView addAnnotation:annotation];
+        NSLog(@"[VIEW ANNOTATIN EVENT] added");
+    } else
+    {
+        NSLog(@"[VIEW ANNOTATIN EVENT] NOT added");
+    }
+}
+
+
 #pragma mark Events
 
 - (void)mapViewRegionDidChange:(RMMapView *)map
