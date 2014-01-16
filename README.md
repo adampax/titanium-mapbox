@@ -79,13 +79,14 @@ The `example` folder contains two sample mbtiles maps:
 ## Annotations
 Note: Anntotations are a work in progress.  Currently, annotations are added like this:
 
+```
 mapView.setAnnotation({
 	latitude: 18.467354,
 	longitude: -91.903534,
 	title: 'Test Title',
 	subtitle: 'Subtitle'
 });
-````
+```
 
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
