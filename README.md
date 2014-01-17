@@ -91,7 +91,8 @@ mapView.setAnnotation({
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
 * ~~Add support for remote maps~~
-* Add support for markers and other SDK items
+* Add support for custom markers and other SDK items
+* Make mapbox.CreateAnnotation() and mapView.addAnnotation(annotation) interfaces similar to current Ti Map implementation
 * Contributions welcome
 
 ## About
@@ -101,7 +102,7 @@ mapView.setAnnotation({
 
 ## License
 MIT License
-Copyright (c) 2013 Polanco Media, LLC
+Copyright (c) 2013-2014 Polanco Media, LLC
 
-Uses MapBox iOS SDK, (c) 2008-2013 MapBox and Route-Me Contributors
+Uses MapBox iOS SDK, (c) 2008-2014 MapBox and Route-Me Contributors
 
