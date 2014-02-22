@@ -152,7 +152,6 @@
 //add annotation via public api
 -(void)addAnnotation:(id)args
 {
-    NSLog(@"***********addAnnotationMapbox fired, title: %@", [TiUtils stringValue:[args objectForKey:@"title"]]);
     if([args isKindOfClass:[NSDictionary class]] && mapView != nil)
     {
         RMPointAnnotation *annotation = [[RMPointAnnotation alloc]
