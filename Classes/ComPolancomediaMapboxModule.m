@@ -92,6 +92,13 @@
 	return @"hello world";
 }
 
+//TODO: make a proper Annotation proxy
+-(id)createAnnotation:(id)args
+{
+	ENSURE_SINGLE_ARG(args,NSDictionary);
+    return args;
+}
+
 -(id)exampleProp
 {
 	// example property getter

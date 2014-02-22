@@ -13,4 +13,6 @@
     
 }
 
+-(void)addAnnotation:(id)args;
+
 @end

@@ -6,10 +6,15 @@
  */
 
 #import "ComPolancomediaMapboxViewProxy.h"
+#import "ComPolancomediaMapboxView.h"
 #import "TiUtils.h"
 
 @implementation ComPolancomediaMapboxViewProxy
 
-
+-(void)addAnnotation:(id)arg
+{
+    ENSURE_SINGLE_ARG(arg, NSDictionary);
+    TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] addAnnotation:arg];}, NO);
+}
 
 @end

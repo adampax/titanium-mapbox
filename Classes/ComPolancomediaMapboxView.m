@@ -50,6 +50,8 @@
 	NSLog(@"[VIEW LIFECYCLE EVENT] willMoveToSuperview");
 }
 
+#pragma mark private
+
 -(void)addMap
 {
     if(mapView==nil)
@@ -140,8 +142,17 @@
 }
 
 #pragma mark Annotations
+
+//add annotation via setter
 -(void)setAnnotation_:(id)args
 {
+    [self addAnnotation:args];
+}
+
+//add annotation via public api
+-(void)addAnnotation:(id)args
+{
+    NSLog(@"***********addAnnotationMapbox fired, title: %@", [TiUtils stringValue:[args objectForKey:@"title"]]);
     if([args isKindOfClass:[NSDictionary class]] && mapView != nil)
     {
         RMPointAnnotation *annotation = [[RMPointAnnotation alloc]
@@ -151,11 +162,11 @@
                                          ];
         
         annotation.subtitle = [TiUtils stringValue:[args objectForKey:@"subtitle"]];
-    
+        
         [mapView addAnnotation:annotation];
     } else
     {
-        NSLog(@"[VIEW ANNOTATIN EVENT] NOT added");
+        NSLog(@"ANNOTATION NOT added");
     }
 }
 
