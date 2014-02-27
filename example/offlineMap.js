@@ -21,12 +21,18 @@ exports.win = function(args){
 	
 	win.add(mapView);
 
-	//mapView.setAnnotation([18.467354,-91.903534]);
-	mapView.setAnnotation({
+	var a1 = mapbox.createAnnotation({
 		latitude: 18.467354,
 		longitude: -91.903534,
 		title: 'Test Title',
 		subtitle: 'Subtitle'
+	});
+	mapView.addAnnotation(a1);
+
+	mapView.setAnnotation({
+		latitude: 18.0,
+		longitude: -90.5,
+		title: 'Test 2 Title'
 	});
 	
 	win.add(require('toolbar').init(mapView));

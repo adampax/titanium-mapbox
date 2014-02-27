@@ -4,7 +4,7 @@ Uses the [Mapbox iOS SDK](https://github.com/mapbox/mapbox-ios-sdk) `develop` br
 
 ## Use
 
-Put the [compiled zip](https://github.com/adampax/titanium-mapbox/tree/master/dist) in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.1.3GA, tested on iOS 7.
+Put the [compiled zip](https://github.com/adampax/titanium-mapbox/tree/master/dist) in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.2.1.GA, tested on iOS 7.
 
 ### Example
 
@@ -77,7 +77,7 @@ The `example` folder contains two sample mbtiles maps:
 * Returns coordinates of where the map was single tapped as `latitude` and `longitude`.
 
 ## Annotations
-Note: Anntotations are a work in progress.  Currently, annotations are added like this:
+Note: Annotations are a work in progress.  You can set them like this:
 
 ```
 mapView.setAnnotation({
@@ -88,11 +88,25 @@ mapView.setAnnotation({
 });
 ```
 
+Or you can also add them like the standard Ti map annotations:
+
+```
+var a1 = mapbox.createAnnotation({
+	latitude: 18.467354,
+	longitude: -91.903534,
+	title: 'Test Title',
+	subtitle: 'Subtitle'
+});
+mapView.addAnnotation(a1);
+```
+
+Just keep in mind that stuff like annotation events and other annotation-level setter/getters aren’t yet available.
+
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
 * ~~Add support for remote maps~~
 * Add support for custom markers and other SDK items
-* Make mapbox.CreateAnnotation() and mapView.addAnnotation(annotation) interfaces similar to current Ti Map implementation
+* Make mapbox.createAnnotation() and mapView.addAnnotation(annotation) interfaces similar to current Ti Map implementation
 * Contributions welcome
 
 ## About
