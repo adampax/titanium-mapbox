@@ -2,6 +2,8 @@
 
 Uses the [Mapbox iOS SDK](https://github.com/mapbox/mapbox-ios-sdk) `develop` branch.
 
+![Animation](https://raw.github.com/adampax/titanium-mapbox/master/screenshots/demo-ios.gif)
+
 ## Use
 
 Put the [compiled zip](https://github.com/adampax/titanium-mapbox/tree/master/dist) in your project, and add a reference in tiapp.xml. Built using Ti SDK 3.2.1.GA, tested on iOS 7.
