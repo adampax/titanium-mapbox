@@ -2,12 +2,12 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.1
+version: 0.2
 apiversion: 2
 description: Wrapper for Mapbox iOS SDK
 author: Adam Paxton
 license: MIT License
-copyright: Copyright (c) 2013 Polanco Media, LLC. Uses MapBox iOS SDK, (c) 2008-2013 MapBox and Route-Me Contributors
+copyright: Copyright (c) 2013-2014 Polanco Media, LLC. Uses MapBox iOS SDK, (c) 2008-2014 MapBox and Route-Me Contributors
 
 
 # these should not be edited
