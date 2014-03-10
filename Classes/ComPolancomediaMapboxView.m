@@ -172,6 +172,19 @@
 
 #pragma mark Events
 
+- (void)longPressOnMap:(RMMapView *)map at:(CGPoint)point
+{
+	if ([self.proxy _hasListeners:@"longPressOnMap"]) {
+		NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSString stringWithFormat:@"%f",[mapView pixelToCoordinate:point].longitude],@"longitude",
+                               [NSString stringWithFormat:@"%f",[mapView pixelToCoordinate:point].latitude],@"latitude",
+                               nil
+                               ];
+        
+		[self.proxy fireEvent:@"longPressOnMap" withObject:event];
+	}
+}
+
 - (void)mapViewRegionDidChange:(RMMapView *)map
 {
 	if ([self.proxy _hasListeners:@"mapViewRegionDidChange"]) {
