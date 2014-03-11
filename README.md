@@ -108,7 +108,8 @@ Just keep in mind that stuff like annotation events and other annotation-level s
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
 * ~~Add support for remote maps~~
 * Add support for custom markers and other SDK items
-* Make mapbox.createAnnotation() and mapView.addAnnotation(annotation) interfaces similar to current Ti Map implementation
+* ~~Make mapbox.createAnnotation() and mapView.addAnnotation(annotation) interfaces similar to current Ti Map implementation~~
+* Full annotation support with events, images, clustering, polygons
 * Contributions welcome
 
 ## About
