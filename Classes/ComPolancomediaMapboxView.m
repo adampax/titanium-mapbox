@@ -212,4 +212,7 @@
 	}
 }
 
+-(void)addPolygon:(id)args
+{
+}
 @end
