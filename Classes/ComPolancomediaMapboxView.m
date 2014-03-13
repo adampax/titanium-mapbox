@@ -212,7 +212,112 @@
 	}
 }
 
+//parts of addPolygon from https://github.com/benbahrenburg/benCoding.Map Apache License 2.0
 -(void)addPolygon:(id)args
 {
+	ENSURE_TYPE(args,NSDictionary);
+	ENSURE_UI_THREAD(addPolygon,args);
+    
+    id pointsValue = [args objectForKey:@"points"];
+    
+    if(pointsValue==nil)
+    {
+        NSLog(@"points value is missing, cannot add polygon");
+        return;
+    }
+    NSArray *inputPoints = [NSArray arrayWithArray:pointsValue];
+    //Get our counter
+    NSUInteger pointsCount = [inputPoints count];
+    
+    //We need at least one point to do anything
+    if(pointsCount==0){
+        return;
+    }
+    
+    //Create the number of points provided
+    NSMutableArray *points = [[NSMutableArray alloc] init];
+    
+    //loop through and add coordinates
+    for (int iLoop = 0; iLoop < pointsCount; iLoop++) {
+        [points addObject:
+         [[CLLocation alloc] initWithLatitude:[TiUtils floatValue:@"latitude" properties:[inputPoints objectAtIndex:iLoop] def:0]
+                                    longitude:[TiUtils floatValue:@"longitude" properties:[inputPoints objectAtIndex:iLoop] def:0] ]];
+ }
+    
+    RMAnnotation *annotation = [[RMAnnotation alloc]
+                                initWithMapView:mapView
+                                coordinate:*(CLLocationCoordinate2D *)points
+                                andTitle:[TiUtils stringValue:@"title" properties:args]];
+    
+    //Attach all data for use when creating the layer for the annotation
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              args, @"args",
+                              points, @"points",
+                              @"Polygon", @"type", nil];
+    
+    annotation.userInfo = userInfo;
+    
+    [mapView addAnnotation:annotation];
+}
+
+
+//This event that adds layer for any annotation created with RMAnnotation
+- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
+{
+    //check for user location annotation
+    if (annotation.isUserLocationAnnotation)
+        return nil;
+    
+    NSDictionary *userInfo = [NSDictionary dictionaryWithDictionary:annotation.userInfo];
+    
+    NSString *type = [userInfo objectForKey:@"type"];
+    
+    //Polygon
+    if([type isEqual: @"Polygon"])
+    {
+        return [self polygonShape:mapView userInfo:userInfo];
+    }
+}
+
+
+
+- (RMMapLayer *)polygonShape:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
+{
+    RMShape *shape = [[RMShape alloc] initWithView:mapView];
+    NSDictionary *args = [userInfo objectForKey:@"args"];
+    
+    //Alpha
+    float alpha = [TiUtils floatValue:@"alpha" properties:args];
+    
+    //Line Color
+    UIColor *lineColor =  [[TiUtils colorValue:@"strokeColor" properties:[userInfo objectForKey:@"args"]] _color];
+    if (lineColor != nil)
+    {
+        if(alpha)
+        {
+            lineColor = [lineColor colorWithAlphaComponent:alpha];
+        }
+        shape.lineColor = lineColor;
+    }
+    
+    //Fill color
+    UIColor *fillColor =  [[TiUtils colorValue:@"color" properties:[userInfo objectForKey:@"args"]] _color];
+    
+    if (fillColor != nil)
+    {
+        if(alpha)
+        {
+            fillColor = [fillColor colorWithAlphaComponent:alpha];
+        }
+        shape.fillColor = fillColor;
+    }
+    
+    //Line Width
+    shape.lineWidth = [TiUtils floatValue:@"lineWidth" properties:args def: 1.0];
+
+    for (CLLocation *location in (NSArray *)[userInfo objectForKey:@"points"])
+        [shape addLineToCoordinate:location.coordinate];
+    
+    return shape;
 }
 @end
