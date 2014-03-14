@@ -286,35 +286,35 @@
     RMShape *shape = [[RMShape alloc] initWithView:mapView];
     NSDictionary *args = [userInfo objectForKey:@"args"];
     
-    //Alpha
-    float alpha = [TiUtils floatValue:@"alpha" properties:args];
-    
-    //Line Color
-    UIColor *lineColor =  [[TiUtils colorValue:@"strokeColor" properties:[userInfo objectForKey:@"args"]] _color];
-    if (lineColor != nil)
-    {
-        if(alpha)
-        {
-            lineColor = [lineColor colorWithAlphaComponent:alpha];
-        }
-        shape.lineColor = lineColor;
-    }
-    
-    //Fill color
-    UIColor *fillColor =  [[TiUtils colorValue:@"color" properties:[userInfo objectForKey:@"args"]] _color];
+    //FILL
+    float fillOpacity = [TiUtils floatValue:@"fillOpacity" properties:args];
+    UIColor *fillColor =  [[TiUtils colorValue:@"fillColor" properties:[userInfo objectForKey:@"args"]] _color];
     
     if (fillColor != nil)
     {
-        if(alpha)
+        if(fillOpacity)
         {
-            fillColor = [fillColor colorWithAlphaComponent:alpha];
+            fillColor = [fillColor colorWithAlphaComponent:fillOpacity];
         }
         shape.fillColor = fillColor;
+    }
+    
+    //LINE
+    float lineOpacity = [TiUtils floatValue:@"lineOpacity" properties:args];
+    UIColor *lineColor =  [[TiUtils colorValue:@"lineColor" properties:[userInfo objectForKey:@"args"]] _color];
+    if (lineColor != nil)
+    {
+        if(lineOpacity)
+        {
+            lineColor = [lineColor colorWithAlphaComponent:lineOpacity];
+        }
+        shape.lineColor = lineColor;
     }
     
     //Line Width
     shape.lineWidth = [TiUtils floatValue:@"lineWidth" properties:args def: 1.0];
 
+    //Add shape with coorinates
     for (CLLocation *location in (NSArray *)[userInfo objectForKey:@"points"])
         [shape addLineToCoordinate:location.coordinate];
     
