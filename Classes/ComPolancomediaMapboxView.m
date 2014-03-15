@@ -212,6 +212,16 @@
 	}
 }
 
+-(void)tapOnAnnotation:(RMAnnotation *)annotation onMap:(RMMapView *)map
+{
+    if ([self.proxy _hasListeners:@"tapOnAnnotation"]) {
+        
+        NSDictionary *event = [annotation.userInfo objectForKey:@"args"];
+        
+		[self.proxy fireEvent:@"tapOnAnnotation" withObject:event];
+	}
+}
+
 //parts of addPolygon from https://github.com/benbahrenburg/benCoding.Map Apache License 2.0
 -(void)addPolygon:(id)args
 {
