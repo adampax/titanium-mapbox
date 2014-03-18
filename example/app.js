@@ -19,6 +19,10 @@ var tableData = [{
 }, {
 	title : 'Online Map',
 	id : 'onlineMap'
+}, {
+	title : 'Polygon',
+	id : 'polygon'
+
 }];
 
 var table = Ti.UI.createTableView({
