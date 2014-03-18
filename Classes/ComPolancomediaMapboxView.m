@@ -325,9 +325,10 @@
         }
         shape.lineColor = lineColor;
     }
-    
-    //Line Width
     shape.lineWidth = [TiUtils floatValue:@"lineWidth" properties:args def: 1.0];
+    
+    shape.lineDashLengths = [args objectForKey:@"lineDashLengths" ];
+    shape.lineDashPhase = [TiUtils floatValue:@"lineDashPhase" properties:args def: 0.0];
 
     //Add shape with coorinates
     for (CLLocation *location in (NSArray *)[userInfo objectForKey:@"points"])
