@@ -230,6 +230,11 @@
     
     id pointsValue = [args objectForKey:@"points"];
     
+    //remove points from args since they are no longer needed
+    //and we are passing args along to the annotation userInfo
+    NSMutableDictionary *mutableArgs = [args mutableCopy];
+    [mutableArgs removeObjectForKey:@"points"];
+    
     if(pointsValue==nil)
     {
         NSLog(@"points value is missing, cannot add polygon");
@@ -257,11 +262,11 @@
     RMAnnotation *annotation = [[RMAnnotation alloc]
                                 initWithMapView:mapView
                                 coordinate:*(CLLocationCoordinate2D *)points
-                                andTitle:[TiUtils stringValue:@"title" properties:args]];
+                                andTitle:[TiUtils stringValue:@"title" properties:mutableArgs]];
     
     //Attach all data for use when creating the layer for the annotation
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              args, @"args",
+                              mutableArgs, @"args",
                               points, @"points",
                               @"Polygon", @"type", nil];
     
