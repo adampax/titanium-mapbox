@@ -329,8 +329,9 @@
     
     shape.lineDashLengths = [args objectForKey:@"lineDashLengths" ];
     shape.lineDashPhase = [TiUtils floatValue:@"lineDashPhase" properties:args def: 0.0];
+    shape.scaleLineDash = [TiUtils boolValue:@"scaleLineDash" properties:args def: NO];
 
-    //Add shape with coorinates
+    //Add shape with coordinates
     for (CLLocation *location in (NSArray *)[userInfo objectForKey:@"points"])
         [shape addLineToCoordinate:location.coordinate];
     

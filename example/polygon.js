@@ -31,6 +31,7 @@ exports.win = function(args) {
 		lineOpacity: 0.8,
 		lineDashLengths: [10, 7],
 		lineDashPhase: 2.0,
+		//scaleLineDash: true,
 		points : [{
 			longitude : -100.087706,
 			latitude : 37.000263
