@@ -32,6 +32,7 @@ exports.win = function(args) {
 		lineDashLengths: [10, 7],
 		lineDashPhase: 2.0,
 		//scaleLineDash: true,
+		lineJoin: mapbox.LINE_JOIN_ROUND,
 		points : [{
 			longitude : -100.087706,
 			latitude : 37.000263

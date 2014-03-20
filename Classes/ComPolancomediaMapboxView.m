@@ -330,6 +330,7 @@
     shape.lineDashLengths = [args objectForKey:@"lineDashLengths" ];
     shape.lineDashPhase = [TiUtils floatValue:@"lineDashPhase" properties:args def: 0.0];
     shape.scaleLineDash = [TiUtils boolValue:@"scaleLineDash" properties:args def: NO];
+    shape.lineJoin = [TiUtils stringValue:@"lineJoin" properties:args def:kCALineJoinMiter];
 
     //Add shape with coordinates
     for (CLLocation *location in (NSArray *)[userInfo objectForKey:@"points"])
