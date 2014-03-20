@@ -99,16 +99,6 @@
     return args;
 }
 
--(id)exampleProp
-{
-	// example property getter
-	return @"hello world";
-}
-
--(void)setExampleProp:(id)value
-{
-	// example property setter
-}
 MAKE_SYSTEM_STR(LINE_JOIN_MITER, kCALineJoinMiter);
 MAKE_SYSTEM_STR(LINE_JOIN_ROUND, kCALineJoinRound);
 MAKE_SYSTEM_STR(LINE_JOIN_BEVEL, kCALineJoinBevel);
