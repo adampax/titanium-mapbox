@@ -22,15 +22,17 @@ exports.win = function(args) {
 	//Polygon object inspired by Ben Bahrenburg's version:
 	//https://github.com/benbahrenburg/benCoding.Map/blob/master/documentation/index.md
 
+  //more info on line width, join, dash length/phases, etc:
+	//https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CAShapeLayer_class/Reference/Reference.html#//apple_ref/occ/instp/CAShapeLayer/lineDashPhase
 	var ok = {
 		title : 'Oklahoma',
 		fillColor : '#880000',
 		fillOpacity : 0.5,
-		lineWidth : 2.4,
+		lineWidth : 10.4,
 		lineColor : '#000000',
 		lineOpacity: 0.8,
-		lineDashLengths: [10, 7],
-		lineDashPhase: 2.0,
+		//lineDashLengths: [10, 7],
+		//lineDashPhase: 2.0,
 		//scaleLineDash: true,
 		lineJoin: mapbox.LINE_JOIN_ROUND,
 		points : [{
@@ -180,4 +182,3 @@ exports.win = function(args) {
 
 	return win;
 };
-
