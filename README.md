@@ -59,6 +59,12 @@ The `example` folder contains two sample mbtiles maps:
 * Optional, defaults to false.
 * Displays the user's location on map.
 
+#### backgroundColor
+* Optional, defaults to tan or beige or something like that
+* Background color of the map when tile is loading or not available
+* Useful to set this to the base color of your map if your map's colors contrast
+with the default color
+
 ## Methods
 
 #### setDebugTiles(true)

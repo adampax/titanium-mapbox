@@ -124,10 +124,11 @@
 }
 
 #pragma mark Property Setters
--(void)setBackgroundColor:(UIColor *)backgroundColor
+
+-(void)setBackgroundColor_:(id)backgroundColor
 {
-    UIColor *clr = [[TiUtils colorValue:backgroundColor] _color];
-    mapView.backgroundColor = clr;
+        UIColor *clr = [[TiUtils colorValue:backgroundColor] _color];
+        mapView.backgroundColor = clr;
 }
 
 -(void)setCenterLatLng_:(id)center

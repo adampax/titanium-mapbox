@@ -4,9 +4,9 @@ exports.win = function(args){
 		title: 'Offline Map',
 		backgroundColor:'white'
 	});
-	
+
 	var mapbox = require('com.polancomedia.mapbox');
-	
+
 	var mapView = mapbox.createView({
 		map: '/maps/control-room',
 		minZoom: 0, //8,
@@ -16,9 +16,10 @@ exports.win = function(args){
 		width: Ti.UI.FILL,
 		height: Ti.UI.FILL,
 		hideAttribution: true,  //defaults to: false. See Mapbox terms and conditions before removing
-		userLocation: true
+		userLocation: true,
+		backgroundColor: '#001320'
 	});
-	
+
 	win.add(mapView);
 
 	var a1 = mapbox.createAnnotation({
@@ -34,7 +35,7 @@ exports.win = function(args){
 		longitude: -90.5,
 		title: 'Test 2 Title'
 	});
-	
+
 	win.add(require('toolbar').init(mapView));
 
 	//events
@@ -44,4 +45,3 @@ exports.win = function(args){
 
 	return win;
 }
-
