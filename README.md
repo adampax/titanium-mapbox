@@ -102,6 +102,9 @@ var a1 = mapbox.createAnnotation({
 mapView.addAnnotation(a1);
 ```
 
+## Polygons
+[See Wiki](https://github.com/adampax/titanium-mapbox/wiki/Polygons)
+
 Just keep in mind that stuff like annotation events and other annotation-level setter/getters aren’t yet available.
 
 ## Todos
@@ -113,7 +116,7 @@ Just keep in mind that stuff like annotation events and other annotation-level s
 * Contributions welcome
 
 ## About
-* Me: [Adam Paxton](http://adampaxton.com) 
+* Me: [Adam Paxton](http://adampaxton.com)
 * Twitter: [@adampax](http://twitter.com/adampax)
 * Work: [Polanco Media, LLC](http://polancomedia.com)
 
@@ -122,4 +125,3 @@ MIT License
 Copyright (c) 2013-2014 Polanco Media, LLC
 
 Uses MapBox iOS SDK, (c) 2008-2014 MapBox and Route-Me Contributors
-
