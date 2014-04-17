@@ -267,7 +267,7 @@
     
     RMAnnotation *annotation = [[RMAnnotation alloc]
                                 initWithMapView:mapView
-                                coordinate:*(CLLocationCoordinate2D *)points
+                                coordinate:((CLLocation *)[points objectAtIndex:0]).coordinate
                                 andTitle:[TiUtils stringValue:@"title" properties:mutableArgs]];
     
     //Attach all data for use when creating the layer for the annotation
