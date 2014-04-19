@@ -17,10 +17,10 @@
     TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] addAnnotation:arg];}, NO);
 }
 
--(void)addPolygon:(id)arg
+-(void)addShape:(id)arg
 {
     ENSURE_SINGLE_ARG(arg, NSDictionary);
-    TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] addPolygon:arg];}, NO);
+    TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] addShape:arg];}, NO);
 }
 
 @end

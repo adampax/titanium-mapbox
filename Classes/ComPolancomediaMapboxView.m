@@ -227,11 +227,11 @@
 	}
 }
 
-//parts of addPolygon from https://github.com/benbahrenburg/benCoding.Map Apache License 2.0
--(void)addPolygon:(id)args
+//parts of addShape from https://github.com/benbahrenburg/benCoding.Map addPolygon method Apache License 2.0
+-(void)addShape:(id)args
 {
 	ENSURE_TYPE(args,NSDictionary);
-	ENSURE_UI_THREAD(addPolygon,args);
+	ENSURE_UI_THREAD(addShape,args);
     
     id pointsValue = [args objectForKey:@"points"];
     
@@ -273,7 +273,7 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
                               mutableArgs, @"args",
                               points, @"points",
-                              @"Polygon", @"type", nil];
+                              @"Shape", @"type", nil];
     
     annotation.userInfo = userInfo;
     
@@ -292,16 +292,16 @@
     
     NSString *type = [userInfo objectForKey:@"type"];
     
-    //Polygon
-    if([type isEqual: @"Polygon"])
+    //Shape
+    if([type isEqual: @"Shape"])
     {
-        return [self polygonShape:mapView userInfo:userInfo];
+        return [self shapeLayer:mapView userInfo:userInfo];
     }
 }
 
 
 
-- (RMMapLayer *)polygonShape:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
+- (RMMapLayer *)shapeLayer:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
 {
     RMShape *shape = [[RMShape alloc] initWithView:mapView];
     NSDictionary *args = [userInfo objectForKey:@"args"];
@@ -319,7 +319,7 @@
         shape.fillColor = fillColor;
     }
     
-    //LINE
+    //Line Properties
     float lineOpacity = [TiUtils floatValue:@"lineOpacity" properties:args];
     UIColor *lineColor =  [[TiUtils colorValue:@"lineColor" properties:[userInfo objectForKey:@"args"]] _color];
     if (lineColor != nil)

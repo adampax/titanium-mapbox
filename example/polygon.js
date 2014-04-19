@@ -173,9 +173,8 @@ exports.win = function(args) {
 		}]
 	};
 
-	//add polygon to map
-	mapView.addPolygon(ok);
 
+	mapView.addShape(ok);
 	mapView.addEventListener('tapOnAnnotation', function(e) {
 		Ti.API.info(e);
 	});
