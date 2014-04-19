@@ -79,7 +79,6 @@
         //create the mapView with CGRectMake upon initialization because we won't know frame size until frameSizeChanged is fired after loading view
         //if we wait until then, we can't add annotations.
         mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 1) andTilesource:mapSource];
-        mapView.zoom = [TiUtils floatValue:[self.proxy valueForKey:@"zoom"]];
         mapView.minZoom = [TiUtils floatValue:[self.proxy valueForKey:@"minZoom"]];
         mapView.maxZoom = [TiUtils floatValue:[self.proxy valueForKey:@"maxZoom"]];
         mapView.centerCoordinate = CLLocationCoordinate2DMake([TiUtils floatValue:[[self.proxy valueForKey:@"centerLatLng"]  objectAtIndex:0]],[TiUtils floatValue:[[self.proxy valueForKey:@"centerLatLng"]  objectAtIndex:1]]);
