@@ -76,13 +76,17 @@ with the default color
 #### setCenterLatLng([18.467354,-91.903534])
 * Centers the map on a latitude and longitude.
 
-## Events
+## Map Events
 
 #### 'mapViewRegionDidChange'
 * Fires any time the map moves
 
 #### 'singleTapOnMap'
 * Returns coordinates of where the map was single tapped as `latitude` and `longitude`.
+
+#### 'longPressOnMap'
+* Returns coordinates of where the map was long-pressed as `latitude` and `longitude`.
+
 
 ## Annotations
 Note: Annotations are a work in progress.  You can set them like this:
@@ -108,17 +112,21 @@ var a1 = mapbox.createAnnotation({
 mapView.addAnnotation(a1);
 ```
 
-## Polygons
-[See Wiki](https://github.com/adampax/titanium-mapbox/wiki/Polygons)
+## Shapes, Polygons, Routes, Lines
+[See Wiki](https://github.com/adampax/titanium-mapbox/wiki/Shapes)
 
-Just keep in mind that stuff like annotation events and other annotation-level setter/getters aren’t yet available.
+Just keep in mind that stuff like annotation-level setter/getters aren’t yet available.
+
+## Annotation and Shape Events
+#### tapOnAnnotation
+* Returns info of selected Annotation (Heads up, event name and info may change).
 
 ## Todos
 * Need to verify that min, max and default zoom levels work for maps that don't contain full-world (like road-trip).
 * ~~Add support for remote maps~~
 * Add support for custom markers and other SDK items
 * ~~Make mapbox.createAnnotation() and mapView.addAnnotation(annotation) interfaces similar to current Ti Map implementation~~
-* Full annotation support with events, images, clustering, polygons
+* Full annotation support with events, images, clustering, ~~polygons~~
 * Contributions welcome
 
 ## About
