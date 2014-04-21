@@ -14,5 +14,8 @@
 }
 
 -(void)addAnnotation:(id)args;
+-(void)addShape:(id)args;
+-(void)removeAnnotation:(id)args;
+-(void)removeAllAnnotations:(id)args;
 
 @end

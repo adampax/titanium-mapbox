@@ -174,6 +174,37 @@
     }
 }
 
+-(void)removeAnnotation:(id)args
+{
+    ENSURE_SINGLE_ARG(args,NSObject);
+    NSString *title;
+	
+	if ([args isKindOfClass:[NSString class]])
+	{
+		title = [TiUtils stringValue:args];
+    }
+    else if([args isKindOfClass:[NSDictionary class]]){
+        title = [TiUtils stringValue:[args objectForKey:@"title"]];
+    }
+    for (RMAnnotation *an in mapView.annotations)
+	{
+        if(!an.isUserLocationAnnotation)
+        {
+            if ([title isEqualToString:an.title])
+            {
+                TiThreadPerformOnMainThread(^{[mapView removeAnnotation:an];}, NO);
+                break;
+            }
+        }
+    }
+}
+
+-(void)removeAllAnnotations:(id)args
+{
+    ENSURE_UI_THREAD(removeAllAnnotations, args);
+    [mapView removeAllAnnotations];
+}
+
 
 #pragma mark Events
 

@@ -23,4 +23,15 @@
     TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] addShape:arg];}, NO);
 }
 
+-(void)removeAnnotation:(id)arg
+{
+    TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] removeAnnotation:arg];}, NO);
+}
+
+-(void)removeAllAnnotations:(id)unused
+{
+    TiThreadPerformOnMainThread(^{[(ComPolancomediaMapboxView*)[self view] removeAllAnnotations:unused];}, NO);
+}
+
+
 @end
