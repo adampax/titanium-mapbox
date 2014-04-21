@@ -76,33 +76,12 @@
 
         }
         
-        //create the mapView with CGRectMake upon initialization because we won't know frame size until frameSizeChanged is fired after loading view
-        //if we wait until then, we can't add annotations.
+        /*create the mapView with CGRectMake upon initialization because we won't know frame size
+        until frameSizeChanged is fired after loading view. If we wait until then, we can't add annotations.*/
         mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 1) andTilesource:mapSource];
-        mapView.minZoom = [TiUtils floatValue:[self.proxy valueForKey:@"minZoom"]];
-        mapView.maxZoom = [TiUtils floatValue:[self.proxy valueForKey:@"maxZoom"]];
-        mapView.centerCoordinate = CLLocationCoordinate2DMake([TiUtils floatValue:[[self.proxy valueForKey:@"centerLatLng"]  objectAtIndex:0]],[TiUtils floatValue:[[self.proxy valueForKey:@"centerLatLng"]  objectAtIndex:1]]);
-        
-       /**
-        mapView = [[RMMapView alloc]
-                   initWithFrame:[self bounds]
-                   andTilesource:mapSource
-                   centerCoordinate:CLLocationCoordinate2DMake([TiUtils floatValue:[[self.proxy valueForKey:@"centerLatLng"]  objectAtIndex:0]],[TiUtils floatValue:[[self.proxy valueForKey:@"centerLatLng"]  objectAtIndex:1]])
-                   zoomLevel:[TiUtils floatValue:[self.proxy valueForKey:@"zoom"]]-1
-                   maxZoomLevel:[TiUtils floatValue:[self.proxy valueForKey:@"maxZoom"]]
-                   minZoomLevel:[TiUtils floatValue:[self.proxy valueForKey:@"minZoom"]]
-                   backgroundImage:Nil
-                   ];
-          */
-        
-        mapView.debugTiles = [self.proxy valueForKey:@"debugTiles"];
-        mapView.hideAttribution = [self.proxy valueForKey:@"hideAttribution"];
-        
         mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
         mapView.adjustTilesForRetinaDisplay = YES; // these tiles aren't designed specifically for retina, so make them legible
-        
-        mapView.showsUserLocation = [self.proxy valueForKey:@"userLocation"];
         
         [self addSubview:mapView];
         mapView.delegate = self;
@@ -124,26 +103,47 @@
 
 #pragma mark Property Setters
 
--(void)setBackgroundColor_:(id)backgroundColor
+-(void)setBackgroundColor_:(id)value
 {
-        UIColor *clr = [[TiUtils colorValue:backgroundColor] _color];
-        mapView.backgroundColor = clr;
+    [mapView setBackgroundColor:[[TiUtils colorValue:value] _color]];
 }
 
--(void)setCenterLatLng_:(id)center
+-(void)setCenterLatLng_:(id)value
 {
-    mapView.centerCoordinate = CLLocationCoordinate2DMake([TiUtils floatValue:[center objectAtIndex:0]],[TiUtils floatValue:[center objectAtIndex:1]]);
-
+    [mapView setCenterCoordinate: CLLocationCoordinate2DMake([TiUtils floatValue:[value objectAtIndex:0]],[TiUtils floatValue:[value objectAtIndex:1]])];
 }
 
--(void)setDebugTiles_:(id)debug
+-(void)setDebugTiles_:(id)value
 {
-	mapView.debugTiles = [TiUtils boolValue:debug];
+	[mapView setDebugTiles:[TiUtils boolValue:value]];
 }
 
--(void)setZoom_:(id)zoom
+-(void)setHideAttribution_:(id)value
 {
-    [mapView setZoom:[TiUtils floatValue:zoom] animated:true];
+    mapView.hideAttribution = [TiUtils boolValue:value];
+}
+
+-(void)setMinZoom_:(id)value
+{
+    [mapView setMinZoom:[TiUtils floatValue:value]];
+}
+
+-(void)setMaxZoom_:(id)value
+{
+    [mapView setMaxZoom:[TiUtils floatValue:value]];
+}
+
+-(void)setUserLocation_:(id)value
+{
+    mapView.showsUserLocation = [TiUtils boolValue:value];
+}
+
+-(void)setZoom_:(id)value
+{
+    [mapView setZoom:[TiUtils floatValue:value] animated:true];
+}
+
+{
 }
 
 #pragma mark Annotations
