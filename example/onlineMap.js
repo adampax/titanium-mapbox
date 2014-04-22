@@ -4,9 +4,9 @@ exports.win = function(args){
 		title: 'Online Map',
 		backgroundColor:'white'
 	});
-	
+
 	var mapbox = require('com.polancomedia.mapbox');
-	
+
 	var mapView = mapbox.createView({
 		map: 'examples.map-zswgei2n',
 		minZoom: 1, //8,
@@ -19,10 +19,11 @@ exports.win = function(args){
 		debugTiles:true,
 		userLocation: true
 	});
-	
+
 	win.add(mapView);
-	
+
+	mapView.clearTileCache();
+
 	win.add(require('toolbar').init(mapView));
 	return win;
 }
-

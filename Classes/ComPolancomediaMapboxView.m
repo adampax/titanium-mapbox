@@ -143,7 +143,10 @@
     [mapView setZoom:[TiUtils floatValue:value] animated:true];
 }
 
+#pragma mark Public Methods
+-(void)clearTileCache:(id)args
 {
+    [mapView removeAllCachedImages];
 }
 
 #pragma mark Annotations
