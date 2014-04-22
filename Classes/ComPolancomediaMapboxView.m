@@ -154,26 +154,6 @@
     [self addAnnotation:args];
 }
 
-//add annotation via public api
--(void)addAnnotation:(id)args
-{
-    if([args isKindOfClass:[NSDictionary class]] && mapView != nil)
-    {
-        RMPointAnnotation *annotation = [[RMPointAnnotation alloc]
-                                         initWithMapView:mapView
-                                         coordinate:CLLocationCoordinate2DMake([TiUtils floatValue:[args objectForKey:@"latitude"]],[TiUtils floatValue:[args objectForKey:@"longitude"]])
-                                         andTitle:[TiUtils stringValue:[args objectForKey:@"title"]]
-                                         ];
-        
-        annotation.subtitle = [TiUtils stringValue:[args objectForKey:@"subtitle"]];
-        
-        [mapView addAnnotation:annotation];
-    } else
-    {
-        NSLog(@"ANNOTATION NOT added");
-    }
-}
-
 -(void)removeAnnotation:(id)args
 {
     ENSURE_SINGLE_ARG(args,NSObject);
@@ -258,6 +238,30 @@
 	}
 }
 
+//add annotation via public api
+-(void)addAnnotation:(id)args
+{
+    ENSURE_TYPE(args,NSDictionary);
+	ENSURE_UI_THREAD(addAnnotation,args);
+    
+    RMAnnotation *annotation = [[RMAnnotation alloc]
+                                initWithMapView:mapView
+                                coordinate:CLLocationCoordinate2DMake([TiUtils floatValue:[args objectForKey:@"latitude"]],[TiUtils floatValue:[args objectForKey:@"longitude"]])
+                                andTitle:[TiUtils stringValue:[args objectForKey:@"title"]]
+                                ];
+    
+    annotation.subtitle = [TiUtils stringValue:[args objectForKey:@"subtitle"]];
+    
+    //Attach all data for use when creating the layer for the annotation
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              args, @"args",
+                              @"Marker", @"type", nil];
+    
+    annotation.userInfo = userInfo;
+    
+    [mapView addAnnotation:annotation];
+}
+
 //parts of addShape from https://github.com/benbahrenburg/benCoding.Map addPolygon method Apache License 2.0
 -(void)addShape:(id)args
 {
@@ -328,9 +332,23 @@
     {
         return [self shapeLayer:mapView userInfo:userInfo];
     }
+    else if([type isEqual: @"Marker"])
+    {
+        return [self markerLayer:mapView userInfo:userInfo];
+    }
 }
 
+- (RMMapLayer *)markerLayer:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
+{
+    RMMarker *marker = [[RMMarker alloc] initWithMapBoxMarkerImage:nil tintColor:([TiUtils isIOS7OrGreater] ? mapView.tintColor : nil)];
+    NSDictionary *args = [userInfo objectForKey:@"args"];
+  
+    marker.canShowCallout = YES;
 
+
+    
+    return marker;
+}
 
 - (RMMapLayer *)shapeLayer:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
 {
