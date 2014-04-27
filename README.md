@@ -67,8 +67,8 @@ with the default color
 
 ## Methods
 
-#### setDebugTiles(true)
-* Boolean, toggles the debug grid on the map
+#### clearTileCache()
+* Remove all tile images that were cached while viewing a remote map.
 
 #### setZoom(4)
 * Zoom the map. Accepts a float to set the zoom level
@@ -89,6 +89,7 @@ with the default color
 
 
 ## Annotations
+[See Wiki](https://github.com/adampax/titanium-mapbox/wiki/Annotations)
 Note: Annotations are a work in progress.  You can set them like this:
 
 ```
