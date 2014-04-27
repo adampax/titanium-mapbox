@@ -207,7 +207,11 @@
 - (void)mapViewRegionDidChange:(RMMapView *)map
 {
 	if ([self.proxy _hasListeners:@"mapViewRegionDidChange"]) {
-		[self.proxy fireEvent:@"mapViewRegionDidChange"];
+        
+        NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSString stringWithFormat:@"%f",[map centerCoordinate].latitude], @"latitude",
+                               [NSString stringWithFormat:@"%f",[map centerCoordinate].longitude], @"longitude",nil];
+		[self.proxy fireEvent:@"mapViewRegionDidChange" withObject:event];
 	}
 }
 
