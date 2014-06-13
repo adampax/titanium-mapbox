@@ -78,7 +78,7 @@
         
         /*create the mapView with CGRectMake upon initialization because we won't know frame size
         until frameSizeChanged is fired after loading view. If we wait until then, we can't add annotations.*/
-        mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 1) andTilesource:mapSource];
+        mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1) andTilesource:mapSource];
         mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
         mapView.adjustTilesForRetinaDisplay = YES; // these tiles aren't designed specifically for retina, so make them legible
