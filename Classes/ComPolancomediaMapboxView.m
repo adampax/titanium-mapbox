@@ -61,12 +61,24 @@
         NSString *mapPath = [TiUtils stringValue:[self.proxy valueForKey:@"map"]];
         id mapSource;
         
-        //check if file exists, otherwise try to add remote map
-        NSString *mapInResourcesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[mapPath stringByAppendingString:@".mbtiles"]];
-        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:mapInResourcesFolder];
-        NSLog(@"mapFile exists: %i", fileExists);
+        //check if file exists in AppData dir, otherwise try Resources
+        BOOL fileExistsAppData = [[NSFileManager defaultManager] fileExistsAtPath:mapPath];
+        NSLog(@"mapFile exists in AppData: %i", fileExistsAppData);
         
-        if(fileExists)
+        //check if file exists in default Resources dir, otherwise try to add remote map
+        NSString *mapInResourcesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[mapPath stringByAppendingString:@".mbtiles"]];
+        
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:mapInResourcesFolder];
+        NSLog(@"mapFile exists in Resources (default): %i", fileExists);
+        
+        if( fileExistsAppData)
+        {
+            mapSource = [[RMMBTilesSource alloc] initWithTileSetURL:[NSURL fileURLWithPath:mapPath]];  //arshavinho credit
+            // In Titanium use:
+            // var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, 'map.mbtiles');
+            //...{ map: filePath.resolve()  ... }
+        }
+        else if(fileExists)
         {
             mapSource = [[RMMBTilesSource alloc] initWithTileSetResource:mapPath ofType:@"mbtiles"];
             
