@@ -1,6 +1,6 @@
 // The MIT License
 // 
-// Copyright (c) 2013 Gwendal Roué
+// Copyright (c) 2014 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "GRMustacheTagDelegate.h"
 
-@interface GRMustacheTestBase: SenTestCase
+@interface GRMustacheTestBase: XCTestCase
 @property (nonatomic, readonly) NSBundle *testBundle;
-- (id)JSONObjectWithData:(NSData *)data error:(NSError **)error;
 @end
 
 @interface GRMustacheTestingDelegate : NSObject<GRMustacheTagDelegate> {
-    id(^_mustacheTagWillRenderBlock)(GRMustacheTag *tag, id object);
+    id(^_mustacheTagWillRenderObjectBlock)(GRMustacheTag *tag, id object);
     void(^_mustacheTagDidRenderAsBlock)(GRMustacheTag *tag, id object, NSString *rendering);
     void(^_mustacheTagDidFailBlock)(GRMustacheTag *tag, id object, NSError *error);
 }
-@property (nonatomic, copy) id(^mustacheTagWillRenderBlock)(GRMustacheTag *tag, id object);
+@property (nonatomic, copy) id(^mustacheTagWillRenderObjectBlock)(GRMustacheTag *tag, id object);
 @property (nonatomic, copy) void(^mustacheTagDidRenderAsBlock)(GRMustacheTag *tag, id object, NSString *rendering);
 @property (nonatomic, copy) void(^mustacheTagDidFailBlock)(GRMustacheTag *tag, id object, NSError *error);
 @end

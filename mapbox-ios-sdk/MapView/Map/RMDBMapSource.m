@@ -72,8 +72,7 @@
 #import "RMTileImage.h"
 #import "RMTileCache.h"
 #import "RMFractalTileProjection.h"
-#import "FMDatabase.h"
-#import "FMDatabaseQueue.h"
+#import "FMDB.h"
 
 #pragma mark --- begin constants ----
 
@@ -160,7 +159,7 @@
     _center.latitude = [self getPreferenceAsFloat:kCoverageCenterLatitudeKey];
     _center.longitude = [self getPreferenceAsFloat:kCoverageCenterLongitudeKey];
 
-    RMLog(@"Tile size: %d pixel", self.tileSideLength);
+    RMLog(@"Tile size: %lu pixel", (unsigned long)self.tileSideLength);
     RMLog(@"Supported zoom range: %.0f - %.0f", self.minZoom, self.maxZoom);
     RMLog(@"Coverage area: (%2.6f,%2.6f) x (%2.6f,%2.6f)",
           _topLeft.latitude,

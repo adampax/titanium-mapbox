@@ -125,7 +125,9 @@ typedef enum : NSUInteger {
 /** A custom, static view to use behind the map tiles. The default behavior is to use grid imagery that moves with map panning like MapKit. */
 @property (nonatomic, strong) UIView *backgroundView;
 
-/** A custom image to use behind the map tiles. The default behavior is to show the default `backgroundView` and not a static image. */
+/** A custom image to use behind the map tiles. The default behavior is to show the default `backgroundView` and not a static image. 
+*
+*   @param backgroundImage The image to use. */
 - (void)setBackgroundImage:(UIImage *)backgroundImage;
 
 /** A Boolean value indicating whether to draw tile borders and z/x/y numbers on tile images for debugging purposes. Defaults to `NO`. */
@@ -138,7 +140,10 @@ typedef enum : NSUInteger {
 
 /** @name Initializing a Map View */
 
-/** Initialize a map view with a given frame. A default watermarked MapBox map tile source will be used. */
+/** Initialize a map view with a given frame. A default watermarked Mapbox map tile source will be used. 
+*
+*   @param frame The frame with which to initialize the map view. 
+*   @return An initialized map view, or `nil` if the map view was unable to be initialized. */
 - (id)initWithFrame:(CGRect)frame;
 
 /** Initialize a map view with a given frame and tile source. 
@@ -323,8 +328,8 @@ typedef enum : NSUInteger {
 /** Remove all annotations from the map. This does not remove user location annotations, if any. */
 - (void)removeAllAnnotations;
 
-/** The screen position for a given annotation. 
-*   @param annotation The annotation for which to return the current screen position.
+/** The relative map position for a given annotation. 
+*   @param annotation The annotation for which to return the current position.
 *   @return The screen position of the annotation. */
 - (CGPoint)mapPositionForAnnotation:(RMAnnotation *)annotation;
 
@@ -352,14 +357,18 @@ typedef enum : NSUInteger {
 /** Whether to enable clustering of map point annotations. Defaults to `NO`. */
 @property (nonatomic, assign) BOOL clusteringEnabled;
 
-/** Whether to order markers on the z-axis according to increasing y-position. Defaults to `YES`. */
-@property (nonatomic, assign) BOOL orderMarkersByYPosition;
+/** Whether to order markers on the z-axis according to increasing y-position. Defaults to `YES`. 
+*
+*   @warning This property has been deprecated in favor of [RMMapViewDelegate annotationSortingComparatorForMapView:]. */
+@property (nonatomic, assign) BOOL orderMarkersByYPosition DEPRECATED_MSG_ATTRIBUTE("use -[RMMapViewDelegate annotationSortingComparatorForMapView:] for annotation sorting");
 
 /** Whether to position cluster markers at the weighted center of the points they represent. If `YES`, position clusters in weighted fashion. If `NO`, position them on a rectangular grid. Defaults to `YES`. */
 @property (nonatomic, assign) BOOL positionClusterMarkersAtTheGravityCenter;
 
-/** Whether to order cluster markers above non-clustered markers. Defaults to `NO`. */
-@property (nonatomic, assign) BOOL orderClusterMarkersAboveOthers;
+/** Whether to order cluster markers above non-clustered markers. Defaults to `YES`. 
+*
+*   @warning This property has been deprecated in favor of [RMMapViewDelegate annotationSortingComparatorForMapView:]. */
+@property (nonatomic, assign) BOOL orderClusterMarkersAboveOthers DEPRECATED_MSG_ATTRIBUTE("use -[RMMapViewDelegate annotationSortingComparatorForMapView:] for annotation sorting");
 
 @property (nonatomic, assign) CGSize clusterMarkerSize;
 @property (nonatomic, assign) CGSize clusterAreaSize;
@@ -492,7 +501,9 @@ typedef enum : NSUInteger {
 *
 *   This property does not indicate whether the user’s position is actually visible on the map, only whether the map view is allowed to display it. To determine whether the user’s position is visible, use the userLocationVisible property. The default value of this property is `NO`.
 *
-*   Setting this property to `YES` causes the map view to use the Core Location framework to find the current location. As long as this property is `YES`, the map view continues to track the user’s location and update it periodically. */
+*   Setting this property to `YES` causes the map view to use the Core Location framework to find the current location. As long as this property is `YES`, the map view continues to track the user’s location and update it periodically. 
+*
+*   On iOS 8 and above, your app must specify a value for `NSLocationWhenInUseUsageDescription` in its `Info.plist` to satisfy the requirements of the underlying Core Location framework when enabling this property. */
 @property (nonatomic, assign) BOOL showsUserLocation;
 
 /** The annotation object representing the user’s current location. (read-only) */
@@ -514,6 +525,8 @@ typedef enum : NSUInteger {
 /** Set the mode used to track the user location. 
 *
 *   Setting the tracking mode to `RMUserTrackingModeFollow` or `RMUserTrackingModeFollowWithHeading` causes the map view to center the map on that location and begin tracking the user’s location. If the map is zoomed out, the map view automatically zooms in on the user’s location, effectively changing the current visible region.
+*
+*   On iOS 8 and above, your app must specify a value for `NSLocationWhenInUseUsageDescription` in its `Info.plist` to satisfy the requirements of the underlying Core Location framework when tracking the user location.
 *
 *   @param mode The mode used to track the user location. 
 *   @param animated Whether changes to the map center or rotation should be animated when the mode is changed. */

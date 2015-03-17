@@ -19,6 +19,7 @@ var mapView = mapbox.createView({
     minZoom: 0,
     maxZoom: 6,
     zoom: 10,
+    accessToken: 'pk.xyz.abc', //REQUIRED!!!
     centerLatLng: [20.7972,-88.1598],
     width: Ti.UI.FILL,
     height: Ti.UI.FILL
@@ -44,7 +45,7 @@ The `example` folder contains two sample mbtiles maps:
 ## Properties
 
 #### map
-* Required, path to local mbtiles file or an online MapBox or TileStream id that looks something like: _userName.map-szwegi5m_.
+* Required, path to local mbtiles file in Resources directory (without .mbtiles extension) or an online MapBox or a resolvedPath() of a file in the Application Data directory, or a TileStream id that looks something like: _userName.map-szwegi5m_. (accessToken required)
 
 #### debugTiles
 * Optional, defaults to false.

@@ -1,6 +1,5 @@
-# FMDB
+# FMDB v2.3
 This is an Objective-C wrapper around SQLite: http://sqlite.org/
-
 
 ## The FMDB Mailing List:
 http://groups.google.com/group/fmdb
@@ -9,6 +8,20 @@ http://groups.google.com/group/fmdb
 http://www.sqlite.org/faq.html
 
 Since FMDB is built on top of SQLite, you're going to want to read this page top to bottom at least once.  And while you're there, make sure to bookmark the SQLite Documentation page: http://www.sqlite.org/docs.html
+
+## CocoaPods
+
+FMDB can be installed using [CocoaPods](http://cocoapods.org/).
+
+```
+pod 'FMDB'
+# pod 'FMDB/SQLCipher'   # If using FMDB with SQLCipher
+```
+
+**If using FMDB with [SQLCipher](http://sqlcipher.net/) you must use the FMDB/SQLCipher subspec. The FMDB/SQLCipher subspec declares SQLCipher as a dependency, allowing FMDB to be compiled with the `-DSQLITE_HAS_CODEC` flag.**
+
+## FMDB Class Reference:
+http://ccgus.github.io/fmdb/html/index.html
 
 ## Automatic Reference Counting (ARC) or Manual Memory Management?
 You can use either style in your Cocoa project.  FMDB Will figure out which you are using at compile time and do the right thing.
@@ -42,9 +55,9 @@ Before you can interact with the database, it must be opened.  Opening fails if 
 	
 ### Executing Updates
 
-Any sort of SQL statement which is not a `SELECT` statement qualifies as an update.  This includes `CREATE`, `PRAGMA`, `UPDATE`, `INSERT`, `ALTER`, `COMMIT`, `BEGIN`, `DETACH`, `DELETE`, `DROP`, `END`, `EXPLAIN`, `VACUUM`, and `REPLACE` statements (plus many more).  Basically, if your SQL statement does not begin with `SELECT`, it is an update statement.
+Any sort of SQL statement which is not a `SELECT` statement qualifies as an update.  This includes `CREATE`, `UPDATE`, `INSERT`, `ALTER`, `COMMIT`, `BEGIN`, `DETACH`, `DELETE`, `DROP`, `END`, `EXPLAIN`, `VACUUM`, and `REPLACE` statements (plus many more).  Basically, if your SQL statement does not begin with `SELECT`, it is an update statement.
 
-Executing updates returns a single value, a `BOOL`.  A return value of `YES` means the update was successfully executed, and a return value of `NO` means that some error was encountered.  If you use the `-[FMDatabase executeUpdate:error:withArgumentsInArray:orVAList:]` method to execute an update, you may supply an `NSError **` that will be filled in if execution fails.  Otherwise you may invoke the `-lastErrorMessage` and `-lastErrorCode` methods to retrieve more information.
+Executing updates returns a single value, a `BOOL`.  A return value of `YES` means the update was successfully executed, and a return value of `NO` means that some error was encountered.  You may invoke the `-lastErrorMessage` and `-lastErrorCode` methods to retrieve more information.
 
 ### Executing Queries
 
@@ -77,8 +90,8 @@ You must always invoke `-[FMResultSet next]` before attempting to access the val
 - `dateForColumn:`
 - `dataForColumn:`
 - `dataNoCopyForColumn:`
-- `UTF8StringForColumnIndex:`
-- `objectForColumn:`
+- `UTF8StringForColumnName:`
+- `objectForColumnName:`
 
 Each of these methods also has a `{type}ForColumnIndex:` variant that is used to retrieve the data based on the position of the column in the results, as opposed to the column's name.
 
@@ -93,6 +106,32 @@ When you have finished executing queries and updates on the database, you should
 ### Transactions
 
 `FMDatabase` can begin and commit a transaction by invoking one of the appropriate methods or executing a begin/end transaction statement.
+
+### Multiple Statements and Batch Stuff
+
+You can use `FMDatabase`'s executeStatements:withResultBlock: to do multiple statements in a string:
+
+```
+NSString *sql = @"create table bulktest1 (id integer primary key autoincrement, x text);"
+                 "create table bulktest2 (id integer primary key autoincrement, y text);"
+                 "create table bulktest3 (id integer primary key autoincrement, z text);"
+                 "insert into bulktest1 (x) values ('XXX');"
+                 "insert into bulktest2 (y) values ('YYY');"
+                 "insert into bulktest3 (z) values ('ZZZ');";
+
+success = [db executeStatements:sql];
+
+sql = @"select count(*) as count from bulktest1;"
+       "select count(*) as count from bulktest2;"
+       "select count(*) as count from bulktest3;";
+
+success = [self.db executeStatements:sql withResultBlock:^int(NSDictionary *dictionary) {
+    NSInteger count = [dictionary[@"count"] integerValue];
+    XCTAssertEqual(count, 1, @"expected one record for dictionary %@", dictionary);
+    return 0;
+}];
+
+```
 
 ### Data Sanitization
 
@@ -109,7 +148,7 @@ Alternatively, you may use named parameters syntax:
 The parameters *must* start with a colon. SQLite itself supports other characters, but internally the Dictionary keys are prefixed with a colon, do **not** include the colon in your dictionary keys.
 
     NSDictionary *argsDict = [NSDictionary dictionaryWithObjectsAndKeys:@"My Name", @"name", nil];
-    [db executeUpdate:@"INSERT INTO myTable (name) VALUES (:name)" withArgumentsInDictionary:argsDict];
+    [db executeUpdate:@"INSERT INTO myTable (name) VALUES (:name)" withParameterDictionary:argsDict];
 
 Thus, you SHOULD NOT do this (or anything like this):
 
@@ -175,7 +214,9 @@ An easy way to wrap things up in a transaction can be done like this:
     }];
 
 
-FMDatabaseQueue will make a serialized GCD queue in the background and execute the blocks you pass to the GCD queue.  This means if you call your FMDatabaseQueue's methods from multiple threads at the same time GDC will execute them in the order they are received.  This means queries and updates won't step on each other's toes, and every one is happy.
+FMDatabaseQueue will run the blocks on a serialized queue (hence the name of the class).  So if you call FMDatabaseQueue's methods from multiple threads at the same time, they will be executed in the order they are received.  This way queries and updates won't step on each other's toes, and every one is happy.
+
+**Note:** The calls to FMDatabaseQueue's methods are blocking.  So even though you are passing along blocks, they will **not** be run on another thread.
 
 ## Making custom sqlite functions, based on blocks.
 
@@ -188,6 +229,24 @@ The history and changes are availbe on its [GitHub page](https://github.com/ccgu
 ## Contributors
 
 The contributors to FMDB are contained in the "Contributors.txt" file.
+
+## Reporting bugs
+
+Reduce your bug down to the smallest amount of code possible.  You want to make it super easy for the developers to see and reproduce your bug.  If it helps, pretend that the person who can fix your bug is active on shipping 3 major products, works on a handful of open source projects, has a newborn baby, and is generally very very busy.
+
+And we've even added a template function to main.m (FMDBReportABugFunction) in the FMDB distribution to help you out:
+
+* Open up fmdb project in Xcode.
+* Open up main.m and modify the FMDBReportABugFunction to reproduce your bug.
+	* Setup your table(s) in the code.
+	* Make your query or update(s).
+	* Add some assertions which demonstrate the bug.
+	
+Then you can bring it up on the FMDB mailing list by showing your nice and compact FMDBReportABugFunction, or you can report the bug via the github FMDB bug reporter.
+
+**Optional:**
+
+Figure out where the bug is, fix it, and send a patch in or bring that up on the mailing list.  Make sure all the other tests run after your modifications.
 
 ## License
 

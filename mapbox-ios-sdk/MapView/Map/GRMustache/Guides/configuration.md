@@ -1,13 +1,24 @@
-[up](../../../../GRMustache#documentation), [next](html_vs_text.md)
+[up](../../../../GRMustache#documentation), [next](forking.md)
 
 Configuration
 =============
 
-GRMustache has options: they are properties of a GRMustacheConfiguration instance. You basically have three levels of tuning:
+GRMustache has options: they are properties of a GRMustacheConfiguration instance.
 
-- global configuration for all templates,
-- configuration for all templates of a [template repository](template_repositories.md),
-- configuration for a single template.
+- [Three levels of tuning](#three-levels-of-tuning)
+- [Factory configuration](#factory-configuration)
+- [Configuration properties](#configuration-properties)
+- [Compatibility with other Mustache implementations](#compatibility-with-other-mustache-implementations)
+
+
+Three levels of tuning
+----------------------
+
+You can tune GRMustache at three different levels:
+
+- Globally
+- For all templates of a [template repository](template_repositories.md),
+- For a single template.
 
 The global default configuration is `[GRMustacheConfiguration defaultConfiguration]`:
 
@@ -49,8 +60,8 @@ GRMustacheTemplateRepository *repo = [GRMustacheTemplateRepository templateRepos
 repo.configuration = [GRMustacheConfiguration configuration];
 ```
 
-GRMustacheConfiguration properties
-----------------------------------
+Configuration properties
+------------------------
 
 - [baseContext](#basecontext)
 - [contentType](#contenttype)
@@ -91,7 +102,7 @@ You can also reset it to a blank slate, getting rid of the whole standard librar
 repo.configuration.baseContext = [GRMustacheContext context];
 ```
 
-You may also be interested in [protected contexts](protected_contexts.md). They guarantee that a particular identifier will always evaluate to the same value.
+You may also be interested in [priority keys](security.md#priority-keys). They guarantee that a particular identifier will always evaluate to the same value.
 
 ```objc
 // Guarantee that {{my_important_value}} will always render the same and cannot
@@ -148,7 +159,7 @@ Compatibility with other Mustache implementations
 
 The [Mustache specification](https://github.com/mustache/spec) does not talk about any of the options above.
 
-**If your goal is to design templates that remain compatible with [other Mustache implementations](https://github.com/defunkt/mustache/wiki/Other-Mustache-implementations), check their documentation.**
+**If your goal is to design templates that are compatible with [other Mustache implementations](https://github.com/defunkt/mustache/wiki/Other-Mustache-implementations), check their documentation.**
 
 
-[up](../../../../GRMustache#documentation), [next](html_vs_text.md)
+[up](../../../../GRMustache#documentation), [next](forking.md)

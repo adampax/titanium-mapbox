@@ -111,6 +111,7 @@
                 for (NSUInteger try = 0; tileData == nil && try < self.retryCount; ++try)
                 {
                     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:currentURL];
+                    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
                     [request setTimeoutInterval:(self.requestTimeoutSeconds / (CGFloat)self.retryCount)];
                     tileData = [NSURLConnection sendBrandedSynchronousRequest:request returningResponse:nil error:nil];
                 }
@@ -130,7 +131,9 @@
         // wait for whole group of fetches (with retries) to finish, then clean up
         //
         dispatch_group_wait(fetchGroup, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * self.requestTimeoutSeconds));
+#if ! OS_OBJECT_USE_OBJC
         dispatch_release(fetchGroup);
+#endif
 
         // composite the collected images together
         //
@@ -160,6 +163,7 @@
         {
             NSHTTPURLResponse *response = nil;
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[URLs objectAtIndex:0]];
+            [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
             [request setTimeoutInterval:(self.requestTimeoutSeconds / (CGFloat)self.retryCount)];
             image = [UIImage imageWithData:[NSURLConnection sendBrandedSynchronousRequest:request returningResponse:&response error:nil]];
 
