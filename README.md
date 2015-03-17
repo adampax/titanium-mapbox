@@ -45,7 +45,11 @@ The `example` folder contains two sample mbtiles maps:
 ## Properties
 
 #### map
-* Required, path to local mbtiles file in Resources directory (without .mbtiles extension) or an online MapBox or a resolvedPath() of a file in the Application Data directory, or a TileStream id that looks something like: _userName.map-szwegi5m_. (accessToken required)
+* Required, path to local mbtiles file in Resources directory (include .mbtiles extension in string) or an online MapBox or a resolved path ( file.resolve(); ) of a file in the Application Data directory, or a TileStream id that looks something like: _userName.map-szwegi5m_. 
+
+#### accessToken  
+* Now required due to mapbox API v4 (mapbox-ios-sdk 1.5)
+* Find this at https://www.mapbox.com/account/apps/
 
 #### debugTiles
 * Optional, defaults to false.
