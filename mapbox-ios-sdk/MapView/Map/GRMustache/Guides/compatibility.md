@@ -1,4 +1,4 @@
-[up](../../../../GRMustache#documentation), [next](sample_code/indexes.md)
+[up](../../../../GRMustache#documentation), [next](security.md)
 
 Compatibility With Other Mustache Engines
 =========================================
@@ -13,17 +13,17 @@ That being said, you may use GRMustache to its full extent, and build templates 
 
 This guide is here to tell you where the border line is, topic by topic:
 
-- Syntax extensions
-- Sections and inverted sections
-- Standard Library
-- Text templates
-- File system hierarchy of template and partials
-- Dynamic partials
-- Template inheritance, layouts, overridable partials
-- Protected contexts
-- Custom rendering objects
-- Filters
-- Tag delegates
+- [Syntax extensions](#syntax-extensions)
+- [Boolean interpretation](#boolean-interpretation)
+- [Standard Library](#standard-library)
+- [Text templates](#text-templates)
+- [File system hierarchy of template and partials](#file-system-hierarchy-of-template-and-partials)
+- [Dynamic partials](#dynamic-partials)
+- [Template inheritance](#template-inheritance)
+- [Priority keys](#priority-keys)
+- [Custom rendering objects](#custom-rendering-objects)
+- [Filters](#filters)
+- [Tag delegates](#tag-delegates)
 
 
 Syntax extensions
@@ -48,8 +48,8 @@ GRMustache introduces syntax that is not defined by the Mustache specification. 
 - **Loops in variable tags**: a simple variable tag `{{items}}` renders a concatenation of the rendering of each individual item. You may think of Ruby on Rails' `<%= render @items %>`: check the [Rendering Objects Guide](rendering_objects.md).
 
 
-Sections and inverted sections
-------------------------------
+Boolean interpretation
+----------------------
 
 The Mustache specification does not enforce the list of *false* values, the values that trigger or prevent the rendering of sections and inverted sections:
 
@@ -101,27 +101,27 @@ GRMustache lets you embed partial templates that are chosen at runtime (see the 
 
 The Mustache specification does not cover this use case, and provides with lambda-based workarounds that eventually lead to unwanted HTML-escaping issues.
 
-[Jamie Hill](https://github.com/thelucid) has a [Ruby](https://github.com/thelucid/tache) and a [Javascript](https://github.com/thelucid/mustache.js) engine that support dynamic partials.
+[Jamie Hill](https://github.com/thelucid) has a [Ruby](https://github.com/thelucid/tache) engine that support dynamic partials.
 
 Generally speaking, writing cross-language templates requires you to avoid this feature.
 
 
-Template inheritance, layouts, overridable partials
----------------------------------------------------
-
-Forgive the name dropping in this section title, but this feature has many names.
+Template inheritance
+--------------------
 
 This [GRMustache feature](partials.md) is directly inspired by [hogan.js](http://twitter.github.com/hogan.js/) and [spullara/mustache.java](https://github.com/spullara/mustache.java).
 
-There is no guarantee that our implementations are identical, though.
+GRMustache passes all template inheritance tests from hogan.js & mustache.java, without exact white-space conformance: GRMustache doesn't honor line suppression, indentation and other white-space niceties.
 
-Use this feature with great care, and simply avoid it when looking for compatibility with other implementations.
+The reciprocal is not sure: hogan.js & mustache.jave may, or not, pass all template inheritance tests of GRMustache.
+
+When looking for compatibility with other implementations, use this feature with great care.
 
 
-Protected contexts
-------------------
+Priority keys
+-------------
 
-GRMustache lets you [protect](protected_contexts.md) some keys so that they are always evaluated to the same value, regardless of other data that you feed your templates with.
+GRMustache lets you give priority to some keys so that they are always evaluated to the same value, regardless of other data that you feed your templates with. See the [Security Guide](security.md#priority-keys) for more information.
 
 This feature is usually implemented by other implementations with functions or methods whose name start with `register`.
 
@@ -156,4 +156,4 @@ Tag delegates may be used for formatting values in a spec-compliant way (see sam
 They are an ambiguous tool. You will have to know when you cross the line.
 
 
-[up](../../../../GRMustache#documentation), [next](sample_code/indexes.md)
+[up](../../../../GRMustache#documentation), [next](security.md)

@@ -6,7 +6,7 @@ Installation
 Option 1: CocoaPods
 -------------------
 
-Append `pod 'GRMustache', '~> 6.8'` to your [Podfile](https://github.com/CocoaPods/CocoaPods).
+Append `pod 'GRMustache', '~> 7.3.1'` to your [Podfile](http://cocoapods.org).
 
 
 Option 2: Static Library
@@ -17,8 +17,8 @@ The distribution includes pre-built static libraries:
 1. Clone the repository with the `git clone https://github.com/groue/GRMustache.git` command.
 
 2. Embed GRMustache in your Xcode project:
-    - For MacOS development, add `include/GRMustache.h` and `lib/libGRMustache6-MacOS.a` to your project.
-    - For iOS development, add `include/GRMustache.h` and `lib/libGRMustache6-iOS.a` to your project.
+    - For MacOS development, add `include/GRMustache.h` and `lib/libGRMustache7-MacOS.a` to your project.
+    - For iOS development, add `include/GRMustache.h` and `lib/libGRMustache7-iOS.a` to your project.
     
     NB: If you have GRMustache files *copied* in your project, you'll need to copy all header files of the `include` directory, not only `GRMustache.h`.
 
@@ -28,12 +28,12 @@ The armv6 slice is not included. In order to target this architecture, you have 
 
 ### Updating your static library
 
-When pulling the `master` branch of GRMustache, you'll get the latest stable release. Should a new major version be shipped, you may pull incompatible changes. In order to prevent this, checkout and pull the `GRMustache6` branch:
+When pulling the `master` branch of GRMustache, you'll get the latest stable release. Should a new major version be shipped, you may pull incompatible changes. In order to prevent this, checkout and pull the `GRMustache7` branch:
 
     $ git clone https://github.com/groue/GRMustache.git
     $ cd GRMustache
-    $ git checkout -b GRMustache6 origin/GRMustache6
-    $ git pull  # checkout the latest version 6
+    $ git checkout -b GRMustache7 origin/GRMustache7
+    $ git pull  # checkout the latest version 7
 
 Option 3: Compiling the raw sources
 -----------------------------------
@@ -42,7 +42,7 @@ You may also embed the raw GRMustache sources in your project:
 
     $ git clone https://github.com/groue/GRMustache.git
     $ cd GRMustache
-    $ git checkout v6.8.3  # checkout the latest stable release
+    $ git checkout v7.3.1  # checkout the latest stable release
     $ git submodule update --init src/vendor/groue/jrswizzle
 
 Add all files of `src/classes` plus `src/vendor/groue/jrswizzle/JRSwizzle.*` to your project.

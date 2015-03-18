@@ -3,44 +3,62 @@
 GRMustache runtime
 ==================
 
-You'll learn here how GRMustache renders your data. The loading of templates is covered in the [Templates Guide](templates.md). Common patterns for feeding templates are described in the [ViewModel Guide](view_model.md).
+You'll learn here how your data is rendered. The loading of templates is covered in the [Templates Guide](templates.md). Common patterns for feeding templates are described in the [ViewModel Guide](view_model.md).
+
+- [How keys are accessed](#how-keys-are-accessed)
+- [Variable tags](#variable-tags)
+- [Expressions](#expressions)
+- [Section tags](#section-tags)
+- [The context stack](#the-context-stack)
+- [Fine tuning of key lookup](#fine-tuning-of-key-lookup)
+- [Detailed description of GRMustache handling of `valueForKey:`](#detailed-description-of-grmustache-handling-of-valueforkey)
+- [Compatibility with other Mustache implementations](#compatibility-with-other-mustache-implementations)
+
+How keys are accessed
+---------------------
+
+Most Mustache tags will look for keys in your rendered objects. In the example below, the `{{name}}` tag fetches the key `name` from a dictionary, leading to the "Hello Arthur!" rendering:
+
+```objc
+NSDictionary *dictionary = @{ @"name": @"Arthur" };
+NSString *rendering = [GRMustacheTemplate renderObject:dictionary fromString:@"Hello {{name}}!" error:NULL];
+```
+
+Dictionaries are an easy way to provide keys. Your own custom objects can be rendered as well, as long as they declare properties for keys used in templates:
+
+```objc
+@interface Person : NSObject
+@property (nonatomic) NSString *name;
+@end
+
+NSDictionary *person = [[Person alloc] init];
+person.name = @"Arthur";
+
+// "Hello Arthur!"
+NSString *rendering = [GRMustacheTemplate renderObject:person fromString:@"Hello {{name}}!" error:NULL];
+```
+
+Precisely, here is how keys are fetched:
+
+1. If the object responds to the [keyed subscripting](http://clang.llvm.org/docs/ObjectiveCLiterals.html#dictionary-style-subscripting) `objectForKeyedSubscript:` method, this method is used.
+2. Otherwise, if the key is safe, then the `valueForKey:` method is used.
+3. Otherwise, the key is considered missed.
+
+By default, a key is *safe* if it is backed by a declared Objective-C property, or a Core Data attribute (for managed objects).
+
+You can mitigate this limitation, though. For example, `-[NSArray count]` is a method, not a property. However, GRMustache can render `{{ items.count }}`. This is because NSArray conforms to the `GRMustacheSafeKeyAccess` protocol. Check the [Security Guide](security.md#safe-key-access) for more information.
+
 
 Variable tags
 -------------
 
-Variable tags `{{ name }}` and `{{{ name }}}` look for the `name` key in the object you provide:
+Variable tags `{{ name }}`, `{{{ name }}}` and `{{& name }}` look for the `name` key in the object you provide, and render the returned value.
 
-```objc
-id data = @{ @"name": @"Arthur" };
+`{{ name }}` renders HTML-escaped values, when `{{{ name }}}` and `{{& name }}` render unescaped values (the two last forms are equivalent).
 
-// Renders "Hello Arthur!"
-NSString *rendering = [GRMustacheTemplate renderObject:data
-                                            fromString:@"Hello {{name}}!"
-                                                 error:NULL];
-```
+Most objects are rendered with the `description` [standard method](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/Reference/NSObject.html).
 
-Any [Key-Value Coding](http://developer.apple.com/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html) compliant object that responds to the `valueForKey:` method can be used.
-
-Dictionaries are such objects. So are, generally speaking, your custom models:
-
-```objc
-// The Person class defines the `name` property:
-Person *barbara = [Person personWithName:@"Barbara"];
-
-// Renders "Hello Barbara!"
-NSString *rendering = [GRMustacheTemplate renderObject:barbara
-                                            fromString:@"Hello {{name}}!"
-                                                 error:NULL];
-```
-
-Remember that `{{ name }}` renders HTML-escaped values, when `{{{ name }}}` and `{{& name }}` render unescaped values.
-
-Objects are usually rendered with the [standard](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/Reference/NSObject.html) `description` method, with two exceptions:
-
-- Your custom objects that take full charge of their own rendering. See the [Rendering Objects Guide](rendering_objects.md) for further details.
-- Objects conforming to the [NSFastEnumeration](http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Chapters/ocFastEnumeration.html) protocol (but NSDictionary):
-
-A variable tag renders all items of enumerable objects:
+Objects conforming to the [NSFastEnumeration](http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Chapters/ocFastEnumeration.html) protocol (but NSDictionary), such as NSArray are rendered as the concatenation of their elements:
 
 ```objc
 id data = @{ @"voyels": @[@"A", @"E", @"I", @"O", @"U"] };
@@ -51,7 +69,8 @@ NSString *rendering = [GRMustacheTemplate renderObject:data
                                                  error:NULL];
 ```
 
-This especially comes handy with your custom [rendering objects](rendering_objects.md): you may think of Ruby on Rails' `<%= render @items %>`.
+Finally, objects that implement the `GRMustacheRendering` protocol take full charge of their own rendering. See the [Rendering Objects Guide](rendering_objects.md) for further details.
+
 
 Expressions
 -----------
@@ -68,7 +87,7 @@ NSString *rendering = [GRMustacheTemplate renderObject:data
                                                  error:NULL];
 ```
 
-GRMustache first looks for the `person` key, extracts its `name`, and applies the `uppercase` built-in filter of the [standard library](standard_library.md). The variable tag eventually renders the resulting string.
+GRMustache first looks for the `person` key, extracts its `name`, and applies the `uppercase` built-in filter of the [standard library](standard_library.md#uppercase). The variable tag eventually renders the resulting string.
 
 
 Section tags
@@ -138,7 +157,7 @@ NSString *rendering = [GRMustacheTemplate renderObject:data
                                                  error:NULL];
 ```
 
-Each item in the collection gets, each on its turn, available for the key lookup: that is how the `{{ name }}` tag renders each of my friend's name.
+Each item in the collection gets, each on its turn, available for the key lookup: that is how the `{{ name }}` tag renders each of my friend's name. Items that conform to the `GRMustacheRendering` protocol can provide their own rendering of their iteration step (see the [Rendering Objects Guide](rendering_objects.md)).
 
 Inverted sections render if and only if the collection is empty:
 
@@ -251,7 +270,7 @@ NSString *rendering = [GRMustacheTemplate renderObject:data
                                                  error:NULL];
 ```
 
-The `localize` key is attached to a rendering object that is built in the [standard library](standard_library.md) shipped with GRMustache.
+The `localize` key is attached to a rendering object that is built in the [standard library](standard_library.md#localize) shipped with GRMustache.
 
 
 ### Other sections
@@ -283,8 +302,8 @@ id data = @{
     }
 };
 
-NSString *templateString = @"{{# withPosition(person.friends) }}"
-                           @"    {{ position }}: {{ name }}"
+NSString *templateString = @"{{# each(person.friends) }}"
+                           @"    {{ @indexPlusOne }}: {{ name }}"
                            @"{{/}}";
 
 // 1: José
@@ -295,10 +314,10 @@ NSString *rendering = [GRMustacheTemplate renderObject:data
                                                  error:NULL];
 ```
 
-The `withPosition` filter returns a [rendering object](rendering_objects.md) that makes the `position` key available inside the section. It is described in the [Collection Indexes Sample Code](sample_code/indexes.md).
+The `each` filter is part of the [standard library](standard_library.md#each).
 
 
-The Context Stack
+The context stack
 -----------------
 
 We have seen that values rendered by sections are made available for the key lookup inside the section.
@@ -344,9 +363,9 @@ The first will look for `bar` anywhere in the context stack, starting with the `
 
 The two others are identical: they ensure the `bar` key comes from the very `foo` object. If `foo` is not found, the `bar` lookup will fail as well, regardless of `bar` keys defined by enclosing contexts.
 
-### Protected contexts
+### Priority keys
 
-*Protected contexts* let you make sure some keys get always evaluated to the same value, regardless of objects that enter the context stack. Check the [Protected Contexts Guide](protected_contexts.md).
+A *priority key* is always evaluated to the same value, regardless of objects that enter the context stack. Check the [Security Guide](security.md#priority-keys).
 
 ### Tag delegates
 
@@ -356,7 +375,12 @@ Values extracted from the context stack are directly rendered unless you had som
 Detailed description of GRMustache handling of `valueForKey:`
 -------------------------------------------------------------
 
-As seen above, GRMustache looks for a key in your data objects with the `valueForKey:` method. With some extra bits.
+As seen above, GRMustache looks for a key in your data objects with the `objectForKeyedSubscript:` and `valueForKey:` methods. If an object responds to `objectForKeyedSubscript:`, this method is used. For other objects, `valueForKey:` is used, as long as the key is safe (see the [Security Guide](security.md)).
+
+
+### NSArray, NSSet, NSOrderedSet
+
+GRMustache does not use `valueForKey:` for NSArray, NSSet, and NSOrderedSet. Instead, it directly invokes methods of those objects. As a consequence, keys like `count`, `firstObject`, etc. can be used in templates.
 
 
 ### NSUndefinedKeyException Handling
@@ -365,12 +389,23 @@ NSDictionary never complains when asked for an unknown key. However, the default
 
 *GRMustache catches those exceptions*, so that the key lookup can continue down the context stack.
 
+Some of you may feel uncomfortable with those exceptions. See the paragraph below.
+
 
 ### NSUndefinedKeyException Prevention
 
-When debugging your project, NSUndefinedKeyException raised by template rendering may become a real annoyance, because it's likely you've told your debugger to stop on every Objective-C exceptions.
+Objective-C exceptions have several drawbacks, particularly:
 
-You can avoid that: make sure you invoke once, early in your application, the following method:
+1. they play badly with autorelease pools, and are reputed to leak memory.
+2. they usually stop your debugger when you are developping your application.
+
+The first point is indeed a matter of worry: Apple does not guarantee that exceptions raised by `valueForKey:` do not leak memory. However, I never had any evidence of such a leak from NSObject's implementation.
+
+Should you still worry, we recommend that you avoid the `valueForKey:` method altogether. Instead, implement the [keyed subscripting](http://clang.llvm.org/docs/ObjectiveCLiterals.html#dictionary-style-subscripting) `objectForKeyedSubscript:` method on objects that you provide to GRMustache.
+
+The second point is valid also: NSUndefinedKeyException raised by template rendering may become a real annoyance when you are debugging your project, because it's likely you've told your debugger to stop on every Objective-C exceptions.
+
+You can avoid them as well: make sure you invoke once, early in your application, the following method:
 
 ```objc
 [GRMustache preventNSUndefinedKeyExceptionAttack];
@@ -386,21 +421,6 @@ Since the main use case for this method is to avoid Xcode breaks on rendering ex
 [GRMustache preventNSUndefinedKeyExceptionAttack];
 #endif
 ```
-
-
-### NSArray, NSSet, NSOrderedSet
-
-*GRMustache shunts the valueForKey: implementation of Foundation collections to NSObject's one*.
-
-It is little know that the implementation of `valueForKey:` of Foundation collections return another collection containing the results of invoking `valueForKey:` using the key on each of the collection's objects.
-
-This is very handy, but this clashes with the [rule of least surprise](http://www.catb.org/~esr/writings/taoup/html/ch01s06.html#id2878339) in the context of Mustache template rendering.
-
-First, `{{collection.count}}` would not render the number of objects in the collection. `{{#collection.count}}...{{/}}` would not conditionally render if and only if the array is not empty. This has bitten at least [one GRMustache user](https://github.com/groue/GRMustache/issues/21), and this should not happen again.
-
-Second, `{{#collection.name}}{{.}}{{/}}` would render the same as `{{#collection}}{{name}}{{/}}`. No sane user would ever try to use the convoluted first syntax. But sane users want a clean and clear failure when their code has a bug, leading to GRMustache not render the object they expect. When `object` resolves to an unexpected collection, `object.name` should behave like a missing key, not like a key that returns an unexpected collection with weird and hard-to-debug side effects.
-
-Based on this rationale, GRMustache uses the implementation of `valueForKey:` of `NSObject` for arrays, sets, and ordered sets. As a consequence, the `count` key can be used in templates, and no unexpected collections comes messing with the rendering.
 
 
 Compatibility with other Mustache implementations

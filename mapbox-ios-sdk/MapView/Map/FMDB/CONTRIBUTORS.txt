@@ -31,5 +31,20 @@ Dave DeLong
 Drarok Ithaqua
 Chris Dolan
 Sriram Patil
+Geoffrey Foster
+Robert Ryan
+Samuel Chen
+Daniel Dickison
+Peter Carr
+Jim Correia
+Phillip Kast
+Chris Wright
+Joshua Tessier
+Graham Dennis
+Nick Hodapp
+Xianliang Li (Oldman)
+David Hart
+Mike Ash
+Julius Scott
 
 Aaaaannnd, Gus Mueller (that's me!)

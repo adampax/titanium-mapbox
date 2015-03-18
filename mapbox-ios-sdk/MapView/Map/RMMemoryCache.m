@@ -40,8 +40,6 @@
     if (!(self = [super init]))
         return nil;
 
-    RMLog(@"initializing memory cache %@ with capacity %d", self, aCapacity);
-
     _memoryCache = [[NSMutableDictionary alloc] initWithCapacity:aCapacity];
     _memoryCacheQueue = dispatch_queue_create("routeme.memoryCacheQueue", DISPATCH_QUEUE_CONCURRENT);
 
@@ -64,6 +62,10 @@
         [_memoryCache removeAllObjects];
         _memoryCache = nil;
     });
+    
+#if ! OS_OBJECT_USE_OBJC
+    dispatch_release(_memoryCacheQueue);
+#endif
 }
 
 - (void)didReceiveMemoryWarning

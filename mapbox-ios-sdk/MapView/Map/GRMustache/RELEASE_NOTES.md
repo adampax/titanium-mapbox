@@ -3,6 +3,205 @@ GRMustache Release Notes
 
 You can compare the performances of GRMustache versions at https://github.com/groue/GRMustacheBenchmark.
 
+## v7.3.1
+
+- [#92](https://github.com/groue/GRMustache/pull/92) Fix compile error when using the `use_frameworks!` option of CocoaPods.
+
+
+## v7.3.0
+
+This version fixes the backward compatibility issues introduced by GRMustache v7.2.0.
+
+- Fix for issue [#82](https://github.com/groue/GRMustache/issues/82): the `zip` filter is no longer part of the standard library. See [issue #80](https://github.com/groue/GRMustache/issues/80) for some sample code for this discontinued filter.
+- Fix for issue [#83](https://github.com/groue/GRMustache/issues/83): true boolean values no longer enter the context stack when they trigger the rendering of a section.
+- GRMustache used to log parsing and rendering errors whenever your code would not explicitly pass an error pointer. This is no longer the case.
+
+
+## v7.2.0
+
+#### New Standard Library Goodness
+
+- The `each` filter lets templates access array indexes, iterate over key/value dictionary pairs, and more. [Documentation](Guides/standard_library.md#each)
+- The `zip` filter can iterate several collections all at once. [Documentation](Guides/standard_library.md#zip)
+
+**NB: The `zip` filter has introduced a severe backward compatibility issue. It has been removed from the version v7.3.0.**.
+
+Just like all other tools of the [standard library](Guides/standard_library.md), both `each` and `zip` filters are built with public APIs. So you don't have to write them yourselves. But you can still customize them.
+
+`each` is inspired by [Handlebars.js](http://handlebarsjs.com), and `zip` by [issue #80](https://github.com/groue/GRMustache/issues/80).
+
+#### Better support for custom rendering of collections
+
+Custom rendering of a collection can now be done by writing a filter which returns another collection.
+
+Filters written this way can nicely chain, as in `{{# each(zip(array1, array2)) }}...{{/ }}`.
+
+
+## v7.1.0
+
+- Support for template hierarchies stored as bundle resources - fix for [issue #78](https://github.com/groue/GRMustache/pull/78)
+- Fix for [issue #79](https://github.com/groue/GRMustache/issues/79)
+
+
+## v7.0.2
+
+- Fix a memory leak
+- Remove a compiler warning
+
+
+## v7.0.1
+
+Restore compatibility with iOS < 7 and OSX < 10.9.
+
+
+## v7.0.0
+
+GRMustache 7.0 introduces several changes to the previous release, focusing on security, compatibility with other Mustache implementations, and API simplification. Those changes may break your existing applications.
+
+### Breaking changes
+
+The [GRMustache 7.0 Migration Guide](Guides/upgrading.md) is here to ease your transition.
+
+- For security reasons, keys accessed through the Key-Value-Coding method `valueForKey:` are now limited by default to keys that are explicitly declared as properties (with `@property`), or Core Data attributes (for managed objects). See the [Security Guide](Guides/security.md) for more information.
+- Support for garbage-collected Objective-C is dropped.
+- Support for subclassing the `GRMustacheContext` class is dropped.
+- Template inheritance is more compatible with [hogan.js](http://twitter.github.com/hogan.js/) and [spullara/mustache.java](https://github.com/spullara/mustache.java).
+- `[GRMustacheTemplateRepository templateRepositoryWithDictionary:]` no longer copies its partials dictionary. The repository may have a different behavior if the dictionary gets mutated.
+
+
+### New features
+
+- GRMustacheTemplateRepository caches templates. The `reloadTemplates` method clears this cache.
+
+
+### API changes
+
+**New APIs**
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustache.html
+
+```objc
+@interface GRMustache
++ (GRMustacheVersion)libraryVersion;
+@end
+```
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustacheContext.html
+
+```objc
+@interface GRMustacheContext
+@property (nonatomic, readonly) BOOL unsafeKeyAccess;
++ (instancetype)contextWithUnsafeKeyAccess;
+- (instancetype)contextWithUnsafeKeyAccess;
+@end
+```
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustacheRendering.html
+
+```objc
+@interface GRMustacheRendering
++ (id<GRMustacheRendering>)renderingObjectForObject:(id)object;
++ (id<GRMustacheRendering>)renderingObjectWithBlock:(NSString *(^)(GRMustacheTag *tag, GRMustacheContext *context, BOOL *HTMLSafe, NSError **error))block;
+@end
+```
+
+See http://groue.github.io/GRMustache/Reference/Protocols/GRMustacheSafeKeyAccess.html
+
+```objc
+@protocol GRMustacheSafeKeyAccess
++ (NSSet *)safeMustacheKeys;
+@end
+```
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustacheTemplate.html
+
+```objc
+@interface GRMustacheTemplate
+@property (nonatomic, retain, readonly) GRMustacheTemplateRepository *templateRepository;
+@end
+```
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustacheTemplateRepository.html
+
+```objc
+@interface GRMustacheTemplateRepository
+- (void)reloadTemplates;
+@end
+```
+
+**Modified APIs**
+
+Check their updated documentations in the header files.
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustacheTemplateRepository.html
+
+```objc
+@interface GRMustacheTemplateRepository
++ (instancetype)templateRepositoryWithDictionary:(NSDictionary *)templates;
+@end
+```
+
+**Deprecated APIs**
+
+Those APIs are not discontinued, but they will have your code emit deprecation warnings. Check their documentations in the header files in order to get the upgrade path.
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustache.html
+
+```objc
+@interface GRMustache
++ (id<GRMustacheRendering>)renderingObjectForObject:(id)object;
++ (id<GRMustacheRendering>)renderingObjectWithBlock:(NSString *(^)(GRMustacheTag *tag, GRMustacheContext *context, BOOL *HTMLSafe, NSError **error))block;
+@end
+```
+
+See http://groue.github.io/GRMustache/Reference/Classes/GRMustacheTag.html
+
+```objc
+@interface GRMustacheTag
+@property (nonatomic, readonly) GRMustacheTemplateRepository *templateRepository;
+@end
+```
+
+**Removed APIs**
+
+```objc
+typedef NS_ENUM(NSUInteger, GRMustacheTagType) {
+    // This constant is not replaced.
+    GRMustacheTagTypeOverridableSection,
+}
+
+@interface GRMustache
+// Use +[GRMustache libraryVersion] instead.
++ (GRMustacheVersion)version;
+@end
+
+@interface GRMustacheContext
+// Use -[GRMustacheContext hasValue:forMustacheExpression:error:] instead.
+- (id)valueForMustacheExpression:(NSString *)string error:(NSError **)error;
+@end
+```
+
+
+## v6.9.2
+
+- Fix for [issue #70](https://github.com/groue/GRMustache/issues/70): crash on arm64 devices
+
+
+## v6.9.1
+
+- Fix for [issue #67](https://github.com/groue/GRMustache/pull/67): crash in enumeration rendering
+
+
+## v6.9.0
+
+- Fix for [issue #66](https://github.com/groue/GRMustache/issues/66): GRMustache now supports [keyed subscripting](http://clang.llvm.org/docs/ObjectiveCLiterals.html#dictionary-style-subscripting). The `objectForKeyedSubscript:` method is preferred to the classic Key-Value-Coding `valueForKey:` method, when extracting values from your view models.
+
+
+## v6.8.4
+
+Thread-safety of non-mutating methods is guaranteed.
+
+
 ## v6.8.3
 
 The static library lib/libGRMustache6-iOS.a now includes slices for both x86_64 and arm64 architectures.
@@ -57,7 +256,7 @@ Full documentation of the new APIs: [GRMustacheTemplate](http://groue.github.io/
 
 ## v6.7.5
 
-Fix for issue [#56](https://github.com/groue/GRMustache/issues/56) (nil template strings have GRMustache return an error instead of crashing).
+Fix for [issue #56](https://github.com/groue/GRMustache/issues/56) (nil template strings have GRMustache return an error instead of crashing).
 
 ## v6.7.4
 
@@ -608,7 +807,7 @@ See [Guides/sample_code/indexes.md](Guides/sample_code/indexes.md) for a discuss
 
 Keys prefixed by a dot prevent GRMustache to look up the [context stack](Guides/runtime/context_stack.md).
 
-Beware this feature is not in the mustache specification. If your goal is to design templates that remain compatible with [other Mustache implementations](https://github.com/defunkt/mustache/wiki/Other-Mustache-implementations), don't use this syntax.
+Beware this feature is not in the mustache specification. If your goal is to design templates that are compatible with [other Mustache implementations](https://github.com/defunkt/mustache/wiki/Other-Mustache-implementations), don't use this syntax.
 
 See [issue #19](https://github.com/groue/GRMustache/issues/19) and https://github.com/mustache/spec/issues/10.
 

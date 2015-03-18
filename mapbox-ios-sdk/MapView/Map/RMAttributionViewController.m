@@ -3,7 +3,7 @@
 //  MapView
 //
 //  Created by Justin Miller on 6/19/12.
-//  Copyright (c) 2012 MapBox / Development Seed. All rights reserved.
+//  Copyright (c) 2012-2013 Mapbox. All rights reserved.
 //
 
 #import "RMAttributionViewController.h"
@@ -96,7 +96,7 @@
     // fallback to generic OSM attribution
     //
     if ( ! [attribution length])
-        [attribution setString:@"Map data © OpenStreetMap contributors<br/><a href=\"http://mapbox.com/about/maps/\">More</a>"];
+        [attribution setString:@"Map data © OpenStreetMap contributors<br/><a href=\"https://mapbox.com/about/maps/\">More</a>"];
 
     // build up HTML styling
     //
@@ -110,10 +110,10 @@
     {
         CGFloat r,g,b;
         [self.view.tintColor getRed:&r green:&g blue:&b alpha:nil];
-        linkColor  = [NSString stringWithFormat:@"rgb(%i,%i,%i)", (NSUInteger)(r * 255.0), (NSUInteger)(g * 255.0), (NSUInteger)(b * 255.0)];
+        linkColor  = [NSString stringWithFormat:@"rgb(%lu,%lu,%lu)", (unsigned long)(r * 255.0), (unsigned long)(g * 255.0), (unsigned long)(b * 255.0)];
         textColor  = @"black";
         fontFamily = @"Helvetica Neue";
-        fontSize   = [NSString stringWithFormat:@"font-size: %i; ", (NSUInteger)[[UIFont preferredFontForTextStyle:UIFontTextStyleBody] pointSize]];
+        fontSize   = [NSString stringWithFormat:@"font-size: %lu; ", (unsigned long)[[UIFont preferredFontForTextStyle:UIFontTextStyleBody] pointSize]];
         margin     = @"margin: 20px; ";
     }
     else
@@ -133,7 +133,11 @@
     {
         // add SDK info
         //
-        [attribution insertString:[NSString stringWithFormat:@"%@ uses the MapBox iOS SDK © 2013 MapBox, Inc.<br/><a href='http://mapbox.com/mapbox-ios-sdk'>More</a><br/><br/>", [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleDisplayName"]]  atIndex:0];
+        NSString *appName = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleDisplayName"];
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy"];
+        NSString *currentYear = [dateFormatter stringFromDate:[NSDate date]];
+        [attribution insertString:[NSString stringWithFormat:@"%@ uses the Mapbox iOS SDK © %@ Mapbox, Inc.<br/><a href='https://mapbox.com/mapbox-ios-sdk'>More</a><br/><br/>", appName, currentYear] atIndex:0];
 
         // add tinted logo
         //
