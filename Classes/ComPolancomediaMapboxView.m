@@ -361,8 +361,17 @@
 
 - (RMMapLayer *)markerLayer:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
 {
-    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:nil tintColor:([TiUtils isIOS7OrGreater] ? mapView.tintColor : nil)];
     NSDictionary *args = [userInfo objectForKey:@"args"];
+    
+    UIColor *tintColor =  [[TiUtils colorValue:@"tintColor" properties:[userInfo objectForKey:@"args"]] _color];
+    if (tintColor == nil)
+    {
+        tintColor = (mapView.tintColor ? mapView.tintColor : nil);
+    }
+    NSLog(@"Marker color: %i", tintColor);
+    
+    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:nil tintColor: tintColor];
+    
   
     marker.canShowCallout = YES;
 
