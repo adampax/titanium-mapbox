@@ -1,4 +1,4 @@
-[up](../../../../GRMustache#documentation), [next](runtime.md)
+[up](../../../../GRMustache#documentation), [next](configuration.md)
 
 Template repositories
 =====================
@@ -18,6 +18,10 @@ This class helps you solving cases that are not covered by other high-level meth
 - when you want a specific set of templates to have a specific configuration. For example you want them to render text, when all other templates of your application render HTML.
 
 The first two use cases are covered by this guide. See the [Configuration Guide](configuration.md) for the latter.
+
+- [Loading templates and partials from the file system](#loading-templates-and-partials-from-the-file-system)
+- [Loading templates and partials from a dictionary of template strings](#loading-templates-and-partials-from-a-dictionary-of-template-strings)
+- [GRMustacheTemplateRepository Data Source](#grmustachetemplaterepository-data-source)
 
 
 Loading templates and partials from the file system
@@ -112,14 +116,15 @@ In this case, use an absolute path in your partial tags, starting with a slash, 
     ios/c.mustache
     {{> /shared/header }}   {{! absolute path to shared/header }}
     
-```objc 
-NSString *templatesPath = @"path/to/templates";
-GRMustacheTemplateRepository *repository = [GRMustacheTemplateRepository templateRepositoryWithDirectory:templatesPath];
+```objc
+// The root is templatesDirectoryPath:
+[GRMustacheTemplateRepository templateRepositoryWithDirectory:templatesDirectoryPath];
 
-// Loads path/to/templates/a.mustache, and provides a root for
-// absolute partial tags: 
-GRMustacheTemplate aTemplate = [repository templateNamed:@"a"];
-NSString *rendering = [aTemplate renderObject:... error:...];
+// The root is templatesURL:
+[GRMustacheTemplateRepository templateRepositoryWithBaseURL:templatesURL];
+
+// The root is [bundle resourcePath]:
+[GRMustacheTemplateRepository templateRepositoryWithBundle:bundle];
 ```
 
 
@@ -163,7 +168,30 @@ And finally render:
 GRMustacheTemplateRepository Data Source
 ----------------------------------------
 
-Finally, you may implement the `GRMustacheTemplateRepositoryDataSource` protocol in order to load templates for unimagined sources.
+All template repositories have a data source, whose responsability is to provide template strings.
+
+
+### Cache
+
+A template repository *caches* the parsing of its templates. This speeds up the loading of already parsed templates.
+
+However, changes to the underlying template strings won't be visible until you explicitely ask for a reloading:
+
+```objc
+// May reuse a cached parsing:
+template = [repository templateNamed:@"profile" error:NULL];
+
+// Forces the template reloading:
+[repository reloadTemplates];
+template = [repository templateNamed:@"profile" error:NULL];
+```
+
+Beware that previously created instances of GRMustacheTemplate are not reloaded.
+
+
+### Custom data source
+
+You may implement your own object conforming to the `GRMustacheTemplateRepositoryDataSource` protocol, in order to load templates for custom sources.
 
 ```objc
 /**
@@ -252,4 +280,4 @@ GRMustacheTemplateRepository *repository = [GRMustacheTemplateRepository templat
 repository.dataSource = mars;
 ```
 
-[up](../../../../GRMustache#documentation), [next](runtime.md)
+[up](../../../../GRMustache#documentation), [next](configuration.md)

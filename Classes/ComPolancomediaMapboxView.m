@@ -72,7 +72,7 @@
             
         } else
         {
-            mapSource = [[RMMapBoxSource alloc] initWithMapID:mapPath];
+            mapSource = [[RMMapboxSource alloc] initWithMapID:mapPath];
 
         }
         
