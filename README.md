@@ -135,6 +135,11 @@ Just keep in mind that stuff like annotation-level setter/getters aren’t yet a
 * Full annotation support with events, images, clustering, ~~polygons~~
 * Contributions welcome
 
+## Contributors
+Big shout out to these folks for contributing to titanium-mapbox development. Thanks!
+* nitrag [nitrag](https://github.com/nitrag)
+* Maik [maikkley](https://github.com/maikkley)
+
 ## About
 * Me: [Adam Paxton](http://adampaxton.com)
 * Twitter: [@adampax](http://twitter.com/adampax)
