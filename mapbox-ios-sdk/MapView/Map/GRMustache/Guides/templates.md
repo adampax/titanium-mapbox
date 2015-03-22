@@ -1,9 +1,15 @@
-[up](../../../../GRMustache#documentation), [next](partials.md)
+[up](../../../../GRMustache#documentation), [next](runtime.md)
 
 Templates
 =========
 
 You'll learn here how to load, and render templates. The [Runtime Guide](runtime.md) talks about what happens *during* the rendering itself. Common patterns for feeding templates are described in the [ViewModel Guides](view_model.md).
+
+- [Errors](#errors)
+- [On-the-fly rendering methods](#on-the-fly-rendering-methods)
+- [Parse-once-and-render-many-times methods](#parse-once-and-render-many-times-methods)
+- [More loading options](#more-loading-options)
+
 
 Errors
 ------
@@ -23,14 +29,6 @@ typedef enum {
 
 GRMustache usually returns regular NSError objects of domain `GRMustacheErrorDomain`. Exceptions are only thrown for rare programming errors such as inconsistently rendering both HTML and text in a loop of [rendering objects](rendering_objects.md).
 
-As a convenience, if your code does not explictly handle errors (if you provide a NULL error pointer), GRMustache will log them:
-
-```objc
-NSString *rendering = [GRMustacheTemplate renderObject:self.currentUser
-                                          fromResource:@"Profile"
-                                                bundle:nil
-                                                 error:NULL]; // NULL triggers error logging
-```
 
 On-the-fly rendering methods
 ----------------------------
@@ -109,4 +107,4 @@ More loading options
 
 All methods above cover the most common use cases. If you have more needs, check the [Template Repositories Guide](template_repositories.md).
 
-[up](../../../../GRMustache#documentation), [next](partials.md)
+[up](../../../../GRMustache#documentation), [next](runtime.md)

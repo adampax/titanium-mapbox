@@ -68,9 +68,10 @@
 {
     RMProjectedRect _boundingBox, _northWestBoundingBox, _northEastBoundingBox, _southWestBoundingBox, _southEastBoundingBox;
     NSMutableArray *_annotations;
-    RMQuadTreeNode *_parentNode, *_northWest, *_northEast, *_southWest, *_southEast;
+    __weak RMQuadTreeNode *_parentNode;
+    RMQuadTreeNode *_northWest, *_northEast, *_southWest, *_southEast;
     RMQuadTreeNodeType _nodeType;
-    RMMapView *_mapView;
+    __weak RMMapView *_mapView;
 
     RMAnnotation *_cachedClusterAnnotation;
     NSArray *_cachedClusterEnclosedAnnotations;
@@ -519,7 +520,7 @@
 
                 _cachedClusterAnnotation = [[RMAnnotation alloc] initWithMapView:_mapView
                                                                      coordinate:clusterMarkerCoordinate
-                                                                       andTitle:[NSString stringWithFormat:@"%d", enclosedAnnotationsCount]];
+                                                                       andTitle:[NSString stringWithFormat:@"%lu", (unsigned long)enclosedAnnotationsCount]];
                 _cachedClusterAnnotation.isClusterAnnotation = YES;
                 _cachedClusterAnnotation.userInfo = self;
 
@@ -596,7 +597,7 @@
 @implementation RMQuadTree
 {
     RMQuadTreeNode *_rootNode;
-    RMMapView *_mapView;
+    __weak RMMapView *_mapView;
 }
 
 - (id)initWithMapView:(RMMapView *)aMapView

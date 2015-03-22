@@ -1,7 +1,16 @@
-[up](../../../../GRMustache#documentation), [next](protected_contexts.md)
+[up](../../../../GRMustache#documentation), [next](compatibility.md)
 
-GRMustacheTagDelegate protocol
-==============================
+Tag Delegates
+=============
+
+- [The GRMustacheTagDelegate protocol](#the-grmustachetagdelegate-protocol)
+- [Providing Tag Delegates](#providing-tag-delegates)
+- [Use Cases for Tag Delegates](#use-cases-for-tag-delegates)
+- [Compatibility with other Mustache implementations](#compatibility-with-other-mustache-implementations)
+
+
+The GRMustacheTagDelegate protocol
+----------------------------------
 
 This protocol lets you observe, and possibly alter the rendering of the Mustache tags that consume your data.
 
@@ -77,7 +86,7 @@ As soon as the `{{# user }}...{{/ user }}` section renders, the user enters the 
 
 ### By Entering the Base Context of a Template
 
-As soon as an object enters the [context stack](runtime.md#the-context-stack), all its methods, properties, and generally speaking, values returned by the `valueForKey:` method are available for the templates (see the [Runtime Guide](runtime.md)).
+As soon as an object enters the [context stack](runtime.md#the-context-stack), values returned by the `objectForKeyedSubscript:` and `valueForKey:` methods are available for the templates (see the [Runtime Guide](runtime.md)).
 
 This may be undesirable. You may want an object to be a tag delegate while not providing any value to the templates.
 
@@ -133,7 +142,7 @@ It conforms to GRMustacheTagDelegate, obviously, but also to the [GRMustacheRend
 @implementation UppercaseTagDelegate
 
 // GRMustacheRendering
-- (NSString *)renderForMustacheTag:(GRMustacheTag *)tag context:(GRMustacheContext *)context HTMLSafe:(BOOL *)HTMLSafe error:(NSError *__autoreleasing *)error
+- (NSString *)renderForMustacheTag:(GRMustacheTag *)tag context:(GRMustacheContext *)context HTMLSafe:(BOOL *)HTMLSafe error:(NSError **)error
 {
     // Render the Mustache tag with an extended context
     context = [context contextByAddingTagDelegate:self];
@@ -213,8 +222,8 @@ See? When you, GRMustache user, can provide your raw model data and have tag del
 
 Many objects of the [standard library](standard_library.md) are tag delegates. They are all built on top of public APIs, APIs that you can use, so check them out. For example:
 
-- GRMustacheHTMLEscapeFilter is quite simple: [GRMustacheHTMLLibrary.m](../src/classes/GRMustacheHTMLLibrary.m)
-- GRMustacheLocalizer is less simple: [GRMustacheLocalizer.m](../src/classes/GRMustacheLocalizer.m)
+- GRMustacheHTMLEscapeFilter is quite simple: [GRMustacheHTMLLibrary.m](../src/classes/Services/StandardLibrary/GRMustacheHTMLLibrary.m)
+- GRMustacheLocalizer is less simple: [GRMustacheLocalizer.m](../src/classes/Services/StandardLibrary/GRMustacheLocalizer.m)
 
 
 Compatibility with other Mustache implementations
@@ -222,7 +231,7 @@ Compatibility with other Mustache implementations
 
 The [Mustache specification](https://github.com/mustache/spec) does not have the concept of "tag delegates".
 
-**As a consequence, if your goal is to design templates that remain compatible with [other Mustache implementations](https://github.com/defunkt/mustache/wiki/Other-Mustache-implementations), use `GRMustacheTagDelegate` with great care.**
+**As a consequence, if your goal is to design templates that are compatible with [other Mustache implementations](https://github.com/defunkt/mustache/wiki/Other-Mustache-implementations), use `GRMustacheTagDelegate` with great care.**
 
 
-[up](../../../../GRMustache#documentation), [next](protected_contexts.md)
+[up](../../../../GRMustache#documentation), [next](compatibility.md)

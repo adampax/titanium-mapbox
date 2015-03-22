@@ -61,24 +61,38 @@
         NSString *mapPath = [TiUtils stringValue:[self.proxy valueForKey:@"map"]];
         id mapSource;
         
-        //check if file exists, otherwise try to add remote map
-        NSString *mapInResourcesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[mapPath stringByAppendingString:@".mbtiles"]];
-        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:mapInResourcesFolder];
-        NSLog(@"mapFile exists: %i", fileExists);
+        //check if file exists in AppData dir, otherwise try Resources
+        BOOL fileExistsAppData = [[NSFileManager defaultManager] fileExistsAtPath:mapPath];
+        NSLog(@"mapFile exists in AppData: %i", fileExistsAppData);
         
-        if(fileExists)
+        //check if file exists in default Resources dir, otherwise try to add remote map
+        NSString *mapInResourcesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: mapPath ];
+        
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:mapInResourcesFolder];
+        NSLog(@"mapFile exists in Resources (default): %i", fileExists);
+        
+        if( fileExistsAppData)
+        {
+            mapSource = [[RMMBTilesSource alloc] initWithTileSetURL:[NSURL fileURLWithPath:mapPath]];  //arshavinho credit
+            // In Titanium use:
+            // var file = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, 'map.mbtiles');
+            //...{ map: filePath.resolve()  ... }
+        }
+        else if(fileExists)
         {
             mapSource = [[RMMBTilesSource alloc] initWithTileSetResource:mapPath ofType:@"mbtiles"];
             
         } else
         {
-            mapSource = [[RMMapBoxSource alloc] initWithMapID:mapPath];
+            NSString *tkn = [TiUtils stringValue:[self.proxy valueForKey:@"accessToken"]];
+            [[RMConfiguration configuration] setAccessToken:tkn];
+            mapSource = [[RMMapboxSource alloc] initWithMapID:mapPath];
 
         }
         
         /*create the mapView with CGRectMake upon initialization because we won't know frame size
         until frameSizeChanged is fired after loading view. If we wait until then, we can't add annotations.*/
-        mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1) andTilesource:mapSource];
+        mapView = [[RMMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 480) andTilesource:mapSource];
         mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
         mapView.adjustTilesForRetinaDisplay = YES; // these tiles aren't designed specifically for retina, so make them legible
@@ -347,8 +361,17 @@
 
 - (RMMapLayer *)markerLayer:(RMMapView *)mapView userInfo:(NSDictionary *)userInfo
 {
-    RMMarker *marker = [[RMMarker alloc] initWithMapBoxMarkerImage:nil tintColor:([TiUtils isIOS7OrGreater] ? mapView.tintColor : nil)];
     NSDictionary *args = [userInfo objectForKey:@"args"];
+    
+    UIColor *tintColor =  [[TiUtils colorValue:@"tintColor" properties:[userInfo objectForKey:@"args"]] _color];
+    if (tintColor == nil)
+    {
+        tintColor = (mapView.tintColor ? mapView.tintColor : nil);
+    }
+    NSLog(@"Marker color: %i", tintColor);
+    
+    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:nil tintColor: tintColor];
+    
   
     marker.canShowCallout = YES;
 

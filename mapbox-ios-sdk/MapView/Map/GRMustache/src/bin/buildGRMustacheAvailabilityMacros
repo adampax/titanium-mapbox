@@ -5,15 +5,15 @@
 # Whenever GRMustache major or minor version changes, update the MAJOR_VERSION
 # and MAX_MINOR_VERSION constants below, and run:
 # 
-#   src/bin/buildGRMustacheAvailabilityMacros > src/classes/GRMustacheAvailabilityMacros.h
+#   src/bin/buildGRMustacheAvailabilityMacros > src/classes/Shared/GRMustacheAvailabilityMacros.h
 
-MAJOR_VERSION = 6
-MAX_MINOR_VERSION = 8
+MAJOR_VERSION = 7
+MAX_MINOR_VERSION = 3
 
 puts <<-LICENSE
 // The MIT License
 // 
-// Copyright (c) 2013 Gwendal Roué
+// Copyright (c) 2014 Gwendal Roué
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
