@@ -112,6 +112,7 @@ Or you can also add them like the standard Ti map annotations:
 var a1 = mapbox.createAnnotation({
 	latitude: 18.467354,
 	longitude: -91.903534,
+    //markerImage: 'images/sample.png', //custom image for Annotation/Marker (optional)
 	title: 'Test Title',
 	subtitle: 'Subtitle'
 });
