@@ -370,12 +370,17 @@
     }
     NSLog(@"Marker color: %i", tintColor);
     
-    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:nil tintColor: tintColor];
+    RMMarker *marker;
     
-  
+    if([TiUtils stringValue:@"markerImage" properties:args])
+    {
+        NSString *markerImage = [TiUtils stringValue:@"markerImage" properties:args ];
+        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed: markerImage ]];
+    }else{
+        marker = [[RMMarker alloc] initWithMapboxMarkerImage:nil tintColor: tintColor];
+    }
+    
     marker.canShowCallout = YES;
-
-
     
     return marker;
 }
