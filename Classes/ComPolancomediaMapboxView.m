@@ -71,6 +71,9 @@
         BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:mapInResourcesFolder];
         NSLog(@"mapFile exists in Resources (default): %i", fileExists);
         
+        NSString *tkn = [TiUtils stringValue:[self.proxy valueForKey:@"accessToken"]];
+        [[RMConfiguration configuration] setAccessToken:tkn];
+        
         if( fileExistsAppData)
         {
             mapSource = [[RMMBTilesSource alloc] initWithTileSetURL:[NSURL fileURLWithPath:mapPath]];  //arshavinho credit
@@ -84,8 +87,6 @@
             
         } else
         {
-            NSString *tkn = [TiUtils stringValue:[self.proxy valueForKey:@"accessToken"]];
-            [[RMConfiguration configuration] setAccessToken:tkn];
             mapSource = [[RMMapboxSource alloc] initWithMapID:mapPath];
 
         }
